@@ -1,7 +1,7 @@
 # voxiom tools and better css 
 
 additional tools and styles for a better voxiom. 
-made by Wilda, Itex, Nackoo
+  made by Wilda, Itex, Nackoo
 
 ## features
   - skin changer
