@@ -14,6 +14,7 @@ made by Wilda, Itex, Nackoo
   coming soon:
   - custom logo text
   - upload skin by image
+  - custom crosshair
 
 ## installation
   - open `chrome://extensions/`
