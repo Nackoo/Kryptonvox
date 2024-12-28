@@ -1,26 +1,31 @@
 # voxiom tools and better css 
 
-for browser users
+additional tools and styles for a better voxiom
 
 ## features
-  skin changer
-  focus mode
-  custom background
-  custom chat height
-  custom logo
-  better css
-
-## coming soon:
-  custom logo text
-  upload skin by image
+  • skin changer
+  • focus mode
+  • custom background
+  • custom chat height
+  • custom logo
+  • better css
+coming soon:
+  • custom logo text
+  • upload skin by image
 
 ## installation
-to apply the code, you can use 'user javascript and css' chrome extension
+  • open `chrome://extensions/`
+  • turn on developer mode
+  • download [User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld)
+  • click the extension
+  • click `add new`
+  • paste the codes
+  • fill the `URL pattern` into `https://voxiom.io/*`
+  • click `save`
+  • reload voxiom page
 
 made by: nackoo, itex, wilda
 
-discord server
-[https://discord.gg/WxGZwXqYuW](https://discord.gg/WxGZwXqYuW)
-
-official website
-[https://gnwstyles.netlify.app/](https://gnwstyles.netlify.app/)
+G&W
+[discord](https://discord.gg/WxGZwXqYuW)
+[website](https://gnwstyles.netlify.app/)
