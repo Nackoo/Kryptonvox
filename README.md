@@ -26,6 +26,10 @@ made by Wilda, Itex, Nackoo
   - click `save`
   - reload voxiom page
 
-G&W
-- [discord](https://discord.gg/WxGZwXqYuW)
-- [website](https://gnwstyles.netlify.app/)
+## credits
+- G&W
+  - [discord](https://discord.gg/WxGZwXqYuW)
+  - [website](https://gnwstyles.netlify.app/)
+- voxiom
+  - [discord](https://discord.gg/YExechPavq)
+  - [website](https://voxiom.io) 
