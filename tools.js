@@ -5,16 +5,16 @@
 
     const defaultColors = {
         default: {
-            head: "#FF0000",
-            body: "#FFFF00"
+            head: "#00bf63",
+            body: "#ff2424"
         },
         ruby: {
-            head: "#FFFF00",
-            body: "#FF0000"
+            head: "#ffffff",
+            body: "#ff2424"
         },
         sapphire: {
-            head: "#FFFF00",
-            body: "#0000ff"
+            head: "#ffffff",
+            body: "#1919ff"
         }
     };
 
@@ -43,7 +43,7 @@
     container.style.flexDirection = "column";
 
     const hideText = document.createElement("span");
-    hideText.textContent = "Shift + Z to Hide/Show";
+    hideText.textContent = "alt + Z to Hide/Show";
     hideText.style.marginBottom = "7px";
     hideText.style.fontSize = "12px";
     container.appendChild(hideText);
@@ -75,7 +75,7 @@
     container.appendChild(info);
 
     const gnw = document.createElement("span");
-    gnw.textContent = "V. 23 Dec 2024";
+    gnw.textContent = "V. 2 Jan 2025";
     gnw.style.fontSize = "12px";
     gnw.style.position = "absolute";
     gnw.style.right = "10px";
@@ -158,7 +158,7 @@
     focusModeCheckbox.style.marginTop = "3px";
 
     const focusModeLabel = document.createElement("span");
-    focusModeLabel.textContent = "Focus Mode (Shift + K)";
+    focusModeLabel.textContent = "Focus Mode (alt + K)";
     focusModeLabel.style.fontSize = "12px";
     focusModeLabel.style.marginTop = "3px";
 
@@ -186,7 +186,7 @@
     });
 
     document.addEventListener("keydown", function(event) {
-        if (event.key.toLowerCase() === "k" && event.shiftKey) {
+        if (event.key.toLowerCase() === "k" && event.altKey) {
             const isChecked = !focusModeCheckbox.checked;
             focusModeCheckbox.checked = isChecked;
             focusModeCheckbox.dispatchEvent(new Event("change"));
@@ -206,7 +206,7 @@
     chathCheckbox.style.marginTop = "3px";
 
     const chathLabel = document.createElement("span");
-    chathLabel.textContent = "Custom Chat Height (shift + L)";
+    chathLabel.textContent = "Custom Chat Height (alt+ L)";
     chathLabel.style.fontSize = "12px";
     chathLabel.style.marginTop = "3px";
 
@@ -236,7 +236,7 @@
     });
 
     document.addEventListener("keydown", (event) => {
-        if (event.key.toLowerCase() === "l" && event.shiftKey) {
+        if (event.key.toLowerCase() === "l" && event.altKey) {
             chathCheckbox.checked = !chathCheckbox.checked;
             localStorage.setItem("chathChecked", chathCheckbox.checked);
             applyCustomHeight();
@@ -667,7 +667,7 @@
     container.appendChild(resetEverythingButton);
 
     document.addEventListener("keydown", function(event) {
-        if (event.key.toLowerCase() === "z" && event.shiftKey) {
+        if (event.key.toLowerCase() === "z" && event.altKey) {
             const isHidden = container.style.display === "none";
             container.style.display = isHidden ? "flex" : "none";
             localStorage.setItem('isContainerHidden', isHidden ? 'false' : 'true');
