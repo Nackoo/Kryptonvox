@@ -483,7 +483,7 @@
         const styleTag = document.querySelector("style.custom-logo") || document.createElement("style");
         styleTag.className = "custom-logo";
         const heightValue = logoHeightInput.value + "px";
-        styleTag.textContent = `.sc-ibSMNl { content: url('${imageSource}'); height: ${heightValue}; width: auto; }`;
+        styleTag.textContent = `.sc-ibSMNl { content: url('${imageSource}'); height: ${heightValue}; width: auto;     filter: drop-shadow(0 0 20px black);}`;
         document.head.appendChild(styleTag);
     }
 
