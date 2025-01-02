@@ -1,17 +1,4 @@
-/*
-
-(c) copyright 2024 GNW Voxiom CSS
-
-Author          : Nackoo, Wilda
-Discord server  : https://discord.gg/Mz43SeHx
-Contact discord : nackooplaysvoxiom. ; itzwilda
-Credit          : background - wallpaper flare & wallpaperscraft
-Last updated on : 21 december 2024
-Description     : kitten sneeze
-   
- */
- 
- @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
 
 .faeaXa {
     filter: drop-shadow(0 0 15px rgba(var(--inv), 1));
