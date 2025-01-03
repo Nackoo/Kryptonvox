@@ -10,6 +10,7 @@ made by Wilda, Itex, Nackoo
   - custom chat height
   - custom logo
   - better css
+  - custom keybinding 
   
   coming soon:
   - custom logo text
