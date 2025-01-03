@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
+
+ * {
+  font-family: cursive !important;
+  transition: background 0.1s ease;
+}
+ 
+ @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
 
 .faeaXa {
     filter: drop-shadow(0 0 15px rgba(var(--inv), 1));
@@ -88,11 +94,6 @@
 .sc-iQLbEm {
 	background: none !important;
   border: none !important;;
-}
-
-* {
-  transition: background 0.1s ease;
-  font-family: cursive;
 }
 
 .sc-hPmGNk {
@@ -1376,8 +1377,6 @@ div:nth-child(4) > iframe {
   border-radius: 7px;
 }
 
-/*  NEW */
-
   .sc-hkgtus {
     background: black;
 }
@@ -1611,8 +1610,7 @@ content: url('https://imgur.com/Yjg20FF.png') !important;
   margin-top:5px;
  font-family: "fraunces", serif !important;
 }
-.sc-ftuxfO,
-.sc-PDIEN {
+.sc-ftuxfO {
 	 font-family: "fraunces", serif !important;
 }
 .sc-cLqoAx .sc-dBGsNe {
@@ -1624,4 +1622,34 @@ content: url('https://imgur.com/Yjg20FF.png') !important;
 .sc-lajtew {
    font-family: "fraunces", serif !important;
   font-weight:bold;
+}
+
+.sc-PDIEN {
+	font-family: cursive !important;
+}
+.sc-hkgtus {
+	margin-top: -200px;
+}
+.sc-kjOQFR:nth-child(2),
+.sc-kjOQFR:nth-child(3) {
+ display:none;
+}
+.sc-jnrVZQ > span {
+	margin-bottom: 15px;
+}
+.sc-kjOQFR:nth-child(4) {
+	display:none;
+}
+.sc-ljMRFG > span {
+	font-size: 20px;
+}
+.sc-iRFsWr > span {
+	font-size: 20px;
+}
+.sc-jefHZX > span {
+	font-size: 20px;
+}
+.sc-edERGn {
+	font-size:20px;
+  margin-top: -10px;
 }
