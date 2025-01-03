@@ -1,6 +1,6 @@
 (function() {
     const originalSkinURL1 = "https://voxiom.io/package/cb1d14c1ff0efb6a282b.png";
-    const originalSkinURL2 = "https:/voxiom.io/package/aef55bdd0c3c3c3734f8.png";
+    const originalSkinURL2 = "https://voxiom.io/package/aef55bdd0c3c3c3734f8.png";
     const originalSkinURL3 = "https://voxiom.io/package/ecca1227c2e0406be225.png";
 
     const defaultColors = {
