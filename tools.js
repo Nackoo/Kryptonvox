@@ -1,6 +1,6 @@
 (function() {
     const originalSkinURL1 = "https://voxiom.io/package/cb1d14c1ff0efb6a282b.png";
-    const originalSkinURL2 = "https://voxiom.io/package/aef55bdd0c3c3c3734f8.png";
+    const originalSkinURL2 = "https:/voxiom.io/package/aef55bdd0c3c3c3734f8.png";
     const originalSkinURL3 = "https://voxiom.io/package/ecca1227c2e0406be225.png";
 
     const defaultColors = {
@@ -41,11 +41,12 @@
     container.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
     container.style.display = localStorage.getItem('isContainerHidden') === 'true' ? "none" : "flex";
     container.style.flexDirection = "column";
+    container.style.overflow = "auto";
+    container.style.maxHeight = "555px";
 
     const hideText = document.createElement("span");
-    hideText.textContent = "alt + Z to Hide/Show";
     hideText.style.marginBottom = "7px";
-    hideText.style.fontSize = "12px";
+    hideText.style.fontSize = "14px";
     container.appendChild(hideText);
 
     function createColorPicker(savedColor, storageKey) {
@@ -65,18 +66,19 @@
 
     const hr = document.createElement("hr");
     hr.style.marginBottom = "7px";
+    hr.style.border = "1px solid white";
     container.appendChild(hr);
 
     const info = document.createElement("span");
     info.textContent = "head - body color"
-    info.style.fontSize = "12px"
+    info.style.fontSize = "14px"
     info.style.marginBottom = "9px";
     info.style.marginTop = "3px";
     container.appendChild(info);
 
     const gnw = document.createElement("span");
-    gnw.textContent = "V. 2 Jan 2025";
-    gnw.style.fontSize = "12px";
+    gnw.textContent = "V. 3 Jan 2025";
+    gnw.style.fontSize = "14px";
     gnw.style.position = "absolute";
     gnw.style.right = "10px";
     gnw.style.top = "46px";
@@ -84,7 +86,7 @@
 
     const ver = document.createElement("div");
     ver.innerHTML = "<span>&copy; G&W</span>";
-    ver.style.fontSize = "12px";
+    ver.style.fontSize = "14px";
     ver.style.position = "absolute";
     ver.style.right = "8px";
     ver.style.top = "10px";
@@ -107,7 +109,7 @@
         const label = document.createElement("span");
         label.textContent = `${skin.charAt(0).toUpperCase() + skin.slice(1)} Skin`;
         label.style.marginLeft = "7px";
-        label.style.fontSize = "12px";
+        label.style.fontSize = "14px";
         label.style.color = "white";
 
         skinWrapper.appendChild(headPicker);
@@ -129,7 +131,7 @@
 
     const checkboxLabel = document.createElement("span");
     checkboxLabel.textContent = "Skin Swapper";
-    checkboxLabel.style.fontSize = "12px";
+    checkboxLabel.style.fontSize = "14px";
     checkboxLabel.style.color = "white";
 
     checkboxWrapper.appendChild(defaultSkinCheckbox);
@@ -158,8 +160,7 @@
     focusModeCheckbox.style.marginTop = "3px";
 
     const focusModeLabel = document.createElement("span");
-    focusModeLabel.textContent = "Focus Mode (alt + K)";
-    focusModeLabel.style.fontSize = "12px";
+    focusModeLabel.style.fontSize = "14px";
     focusModeLabel.style.marginTop = "3px";
 
     focusModeWrapper.appendChild(focusModeCheckbox);
@@ -185,14 +186,6 @@
         toggleFocusMode(focusModeCheckbox.checked);
     });
 
-    document.addEventListener("keydown", function(event) {
-        if (event.key.toLowerCase() === "k" && event.altKey) {
-            const isChecked = !focusModeCheckbox.checked;
-            focusModeCheckbox.checked = isChecked;
-            focusModeCheckbox.dispatchEvent(new Event("change"));
-        }
-    });
-
     const DEFAULT_CHAT_HEIGHT = "147px";
 
     const chathWrapper = document.createElement("div");
@@ -206,13 +199,12 @@
     chathCheckbox.style.marginTop = "3px";
 
     const chathLabel = document.createElement("span");
-    chathLabel.textContent = "Custom Chat Height (alt+ L)";
-    chathLabel.style.fontSize = "12px";
+    chathLabel.style.fontSize = "14px";
     chathLabel.style.marginTop = "3px";
 
     const chathNumberInput = document.createElement("input");
     chathNumberInput.type = "number";
-    chathNumberInput.style.width = "60px";
+    chathNumberInput.style.width = "50px";
     chathNumberInput.style.paddingLeft = "4px";
     chathNumberInput.value = localStorage.getItem("chathHeight") || "147";
     chathNumberInput.style.marginLeft = "7px";
@@ -233,14 +225,6 @@
     chathNumberInput.addEventListener("input", () => {
         localStorage.setItem("chathHeight", chathNumberInput.value);
         if (chathCheckbox.checked) applyCustomHeight();
-    });
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key.toLowerCase() === "l" && event.altKey) {
-            chathCheckbox.checked = !chathCheckbox.checked;
-            localStorage.setItem("chathChecked", chathCheckbox.checked);
-            applyCustomHeight();
-        }
     });
 
     const observer = new MutationObserver(() => {
@@ -268,7 +252,7 @@
 
     const bgsetLabel = document.createElement("span");
     bgsetLabel.textContent = "Enable Custom BG";
-    bgsetLabel.style.fontSize = "12px";
+    bgsetLabel.style.fontSize = "14px";
     bgsetLabel.style.marginTop = "3px";
 
     bgsetWrapper.appendChild(bgsetCheckbox);
@@ -283,7 +267,7 @@
     const uploadLabel = document.createElement("span");
     uploadLabel.textContent = "Upload BG:";
     uploadLabel.style.marginRight = "5px";
-    uploadLabel.style.fontSize = "12px";
+    uploadLabel.style.fontSize = "14px";
     uploadLabel.style.marginTop = "2px";
     uploadLabel.style.marginBottom = "5px";
 
@@ -427,7 +411,7 @@
 
     const logoLabel = document.createElement("span");
     logoLabel.textContent = "Enable Custom Logo";
-    logoLabel.style.fontSize = "12px";
+    logoLabel.style.fontSize = "14px";
     logoLabel.style.marginTop = "3px";
 
     const logoUploadWrapper = document.createElement("div");
@@ -438,7 +422,7 @@
     const logoUploadLabel = document.createElement("span");
     logoUploadLabel.textContent = "Upload Logo:";
     logoUploadLabel.style.marginRight = "5px";
-    logoUploadLabel.style.fontSize = "12px";
+    logoUploadLabel.style.fontSize = "14px";
     logoUploadLabel.style.marginTop = "2px";
     logoUploadLabel.style.marginBottom = "5px";
 
@@ -466,13 +450,13 @@
     const logoHeightLabel = document.createElement("span");
     logoHeightLabel.textContent = "(logo) Height - Margin Top - Margin Bottom";
     logoHeightLabel.style.marginRight = "5px";
-    logoHeightLabel.style.fontSize = "12px";
+    logoHeightLabel.style.fontSize = "13px";
 
     const logoHeightInput = document.createElement("input");
     logoHeightInput.type = "number";
     logoHeightInput.value = 200;
     logoHeightInput.style.paddingLeft = "4px";
-    logoHeightInput.style.width = "79px";
+    logoHeightInput.style.width = "80px";
     logoHeightInput.style.marginRight = "3px";
 
     logoWrapper.appendChild(logoCheckbox);
@@ -562,14 +546,14 @@
 
     const logosTop = document.createElement("input");
     logosTop.type = "number";
-    logosTop.style.width = "78px";
+    logosTop.style.width = "80px";
     logosTop.style.paddingLeft = "4px";
     logosTop.style.marginRight = "2.5px";
     logosTop.value = localStorage.getItem("logoMarginTop") || 50;
 
     const logosBottom = document.createElement("input");
     logosBottom.type = "number";
-    logosBottom.style.width = "78px";
+    logosBottom.style.width = "80px";
     logosBottom.style.paddingLeft = "4px";
     logosBottom.value = localStorage.getItem("logoMarginBottom") || 40;
 
@@ -621,13 +605,27 @@
 
     const resetEverythingButton = document.createElement("button");
     resetEverythingButton.textContent = "Restore Defaults";
-    resetEverythingButton.style.marginTop = "12px";
     resetEverythingButton.style.padding = "3px";
     resetEverythingButton.style.cursor = "pointer";
     resetEverythingButton.style.background = "none";
     resetEverythingButton.style.border = "1px solid white";
     resetEverythingButton.style.color = "white";
-    resetEverythingButton.style.fontSize = "11px";
+    resetEverythingButton.style.fontSize = "12px";
+
+    const defaultKeybinds = {
+        focusKeybind: {
+            key: 'k',
+            modifier: 'alt'
+        },
+        chatKeybind: {
+            key: 'l',
+            modifier: 'alt'
+        },
+        containerKeybind: {
+            key: 'z',
+            modifier: 'alt'
+        }
+    };
 
     resetEverythingButton.addEventListener("click", function() {
 
@@ -661,19 +659,256 @@
         logoCheckbox.checked = false;
         logoUrlInput.value = "";
 
+        focusKeybind = {
+            ...defaultKeybinds.focusKeybind
+        };
+        chatKeybind = {
+            ...defaultKeybinds.chatKeybind
+        };
+        containerKeybind = {
+            ...defaultKeybinds.containerKeybind
+        };
+
+        saveKeybinds();
+
         location.reload();
     });
 
-    container.appendChild(resetEverythingButton);
+    let focusKeybind = {
+        key: 'k',
+        modifier: 'alt'
+    };
+    let chatKeybind = {
+        key: 'l',
+        modifier: 'alt'
+    };
+    let containerKeybind = {
+        key: 'z',
+        modifier: 'alt'
+    };
 
-    document.addEventListener("keydown", function(event) {
-        if (event.key.toLowerCase() === "z" && event.altKey) {
+    function saveKeybinds() {
+        localStorage.setItem('focusKeybind', JSON.stringify(focusKeybind));
+        localStorage.setItem('chatKeybind', JSON.stringify(chatKeybind));
+        localStorage.setItem('containerKeybind', JSON.stringify(containerKeybind));
+    }
+
+    function loadKeybinds() {
+        const savedFocusKeybind = JSON.parse(localStorage.getItem('focusKeybind'));
+        const savedChatKeybind = JSON.parse(localStorage.getItem('chatKeybind'));
+        const savedContainerKeybind = JSON.parse(localStorage.getItem('containerKeybind'));
+
+        if (savedFocusKeybind) focusKeybind = savedFocusKeybind;
+        if (savedChatKeybind) chatKeybind = savedChatKeybind;
+        if (savedContainerKeybind) containerKeybind = savedContainerKeybind;
+    }
+
+    function updateLabels() {
+        chathLabel.textContent = `Custom Chat Height (${chatKeybind.modifier} + ${chatKeybind.key.toUpperCase()})`;
+        focusModeLabel.textContent = `Focus Mode (${focusKeybind.modifier} + ${focusKeybind.key.toUpperCase()})`;
+        hideText.textContent = `${containerKeybind.modifier} + ${containerKeybind.key.toUpperCase()} to Hide/Show`;
+    }
+
+    function createKeybindButton(initialValue, onKeySet) {
+        const button = document.createElement('button');
+        button.innerText = initialValue;
+        button.type = 'button';
+
+        button.style.background = 'none';
+        button.style.border = 'none';
+        button.style.border = "1px solid white";
+        button.style.width = '77px';
+        button.style.color = "white";
+
+        button.addEventListener('click', () => {
+            button.innerText = 'Press a key';
+            button.style.background = "#bf0000";
+            const handleKeyPress = (event) => {
+                event.preventDefault();
+                button.style.background = 'none';
+                const key = event.key.toLowerCase();
+                button.innerText = key;
+                onKeySet(key);
+                saveKeybinds();
+                updateLabels();
+                document.removeEventListener('keydown', handleKeyPress);
+            };
+            document.addEventListener('keydown', handleKeyPress);
+        });
+
+        return button;
+    }
+
+    function updateEventListeners() {
+        document.removeEventListener('keydown', focusKeyHandler);
+        document.removeEventListener('keydown', chatKeyHandler);
+        document.removeEventListener('keydown', containerKeyHandler);
+
+        document.addEventListener('keydown', focusKeyHandler);
+        document.addEventListener('keydown', chatKeyHandler);
+        document.addEventListener('keydown', containerKeyHandler);
+    }
+
+    function focusKeyHandler(event) {
+        const modifierCheck = focusKeybind.modifier === 'alt' ? event.altKey :
+            focusKeybind.modifier === 'shift' ? event.shiftKey :
+            focusKeybind.modifier === 'ctrl' ? event.ctrlKey : true;
+
+        if (event.key.toLowerCase() === focusKeybind.key && modifierCheck) {
+            const isChecked = !focusModeCheckbox.checked;
+            focusModeCheckbox.checked = isChecked;
+            focusModeCheckbox.dispatchEvent(new Event('change'));
+        }
+    }
+
+    function chatKeyHandler(event) {
+        const modifierCheck = chatKeybind.modifier === 'alt' ? event.altKey :
+            chatKeybind.modifier === 'shift' ? event.shiftKey :
+            chatKeybind.modifier === 'ctrl' ? event.ctrlKey : true;
+
+        if (event.key.toLowerCase() === chatKeybind.key && modifierCheck) {
+            chathCheckbox.checked = !chathCheckbox.checked;
+            localStorage.setItem("chathChecked", chathCheckbox.checked);
+            applyCustomHeight();
+        }
+    }
+
+    // Container Keybinding
+    function containerKeyHandler(event) {
+        const modifierCheck = containerKeybind.modifier === 'alt' ? event.altKey :
+            containerKeybind.modifier === 'shift' ? event.shiftKey :
+            containerKeybind.modifier === 'ctrl' ? event.ctrlKey : true;
+
+        if (event.key.toLowerCase() === containerKeybind.key && modifierCheck) {
             const isHidden = container.style.display === "none";
             container.style.display = isHidden ? "flex" : "none";
             localStorage.setItem('isContainerHidden', isHidden ? 'false' : 'true');
         }
-    });
+    }
 
+    function createKeybindGroup(labelText, keybindObject, onUpdate) {
+        const group = document.createElement('div');
+        group.style.display = 'flex';
+        group.style.alignItems = 'center';
+        group.style.marginBottom = '7px';
+
+        const label = document.createElement('label');
+        label.innerText = `${labelText}: `;
+        label.style.marginRight = '10px';
+        label.style.fontSize = "13px";
+        group.appendChild(label);
+
+        const modifierButton = createKeybindButton(
+            keybindObject.modifier,
+            (newModifier) => {
+                keybindObject.modifier = newModifier;
+                onUpdate();
+            }
+        );
+        modifierButton.style.marginRight = '5px';
+
+        const plusText = document.createElement('span');
+        plusText.innerText = '+';
+        plusText.style.marginRight = '3px';
+        plusText.style.marginLeft = '-1px';
+        plusText.style.fontSize = "14px";
+
+        const keyButton = createKeybindButton(
+            keybindObject.key,
+            (newKey) => {
+                keybindObject.key = newKey;
+                onUpdate();
+            }
+        );
+
+        keyButton.style.background = 'none';
+        keyButton.style.width = '75px';
+
+        group.appendChild(modifierButton);
+        group.appendChild(plusText);
+        group.appendChild(keyButton);
+
+        return group;
+    }
+
+    function createKeybindForm() {
+        const form = document.createElement('form');
+        form.id = 'keybindForm';
+        form.style.display = 'none';
+        form.style.flexDirection = 'column';
+        form.style.alignItems = 'flex-end';
+
+        const dropdownWrapper = document.createElement("div");
+        dropdownWrapper.style.display = "flex";
+        dropdownWrapper.style.alignItems = "center";
+        dropdownWrapper.style.marginTop = "7px";
+
+        const dropdown = document.createElement("span");
+        dropdown.innerHTML = `<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="17" height="17" style="margin-bottom:-5px" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"/></svg> custom keybindings`;
+        dropdown.style.fontSize = "14px";
+
+        const dropdownHr = document.createElement("hr");
+        dropdownHr.style.marginTop = "4px";
+        dropdownHr.style.border = "1px solid white";
+        dropdownHr.style.marginLeft = "5px";
+        dropdownHr.style.width = "117px";
+
+        dropdownWrapper.appendChild(dropdown);
+        dropdownWrapper.appendChild(dropdownHr);
+        container.appendChild(dropdownWrapper);
+
+        const focusGroup = createKeybindGroup('Focus Mode', focusKeybind, updateEventListeners);
+        form.appendChild(focusGroup);
+
+        const chatGroup = createKeybindGroup('Chat Height', chatKeybind, updateEventListeners);
+        form.appendChild(chatGroup);
+
+        const containerGroup = createKeybindGroup('Container', containerKeybind, updateEventListeners);
+        form.appendChild(containerGroup);
+
+        container.appendChild(form);
+
+        dropdown.addEventListener('click', () => {
+            const isFormVisible = form.style.display === 'flex';
+
+            form.style.display = isFormVisible ? 'none' : 'flex';
+
+            if (form.style.display === 'flex') {
+                dropdownWrapper.style.marginBottom = "12px";
+                resetEverythingButton.style.marginTop = "5px";
+                dropdown.innerHTML = `<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="17" height="17" style="margin-bottom:-4px" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/></svg> custom keybindings`;
+            } else {
+                dropdownWrapper.style.marginBottom = "0";
+                resetEverythingButton.style.marginTop = "12px";
+                dropdown.innerHTML = `<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="17" height="17" style="margin-bottom:-5px" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"/></svg> custom keybindings`;
+            }
+
+            localStorage.setItem('keybindFormVisible', form.style.display === 'flex' ? 'true' : 'false');
+        });
+
+        const isFormVisible = localStorage.getItem('keybindFormVisible') === 'true';
+        if (isFormVisible) {
+            form.style.display = 'flex';
+            dropdownWrapper.style.marginBottom = "12px";
+            resetEverythingButton.style.marginTop = "5px";
+            dropdown.innerHTML = `<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="17" height="17" style="margin-bottom:-4px" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/></svg> custom keybindings`;
+        } else {
+            form.style.display = 'none';
+            dropdownWrapper.style.marginBottom = "0";
+            resetEverythingButton.style.marginTop = "12px";
+        }
+    }
+
+    function init() {
+        loadKeybinds();
+        updateLabels();
+        updateEventListeners();
+        createKeybindForm();
+    }
+
+    init();
+
+    container.appendChild(resetEverythingButton);
     document.body.appendChild(container);
 
     if (window.WebGLRenderingContext) {
