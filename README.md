@@ -18,13 +18,13 @@ made by Wilda, Itex, Nackoo
 ## installation
   - open `chrome://extensions/`
   - turn on developer mode
-  - download [User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld)
+  - download [User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld) (suggested)
   - click the extension
   - click `add new`
   - paste the codes
   - fill the `URL pattern` into `https://voxiom.io/*`
   - click `save`
-  - reload voxiom page <br>[User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld) is suggested for placing the code
+  - reload voxiom page 
 
 ## credits
 - G&W
