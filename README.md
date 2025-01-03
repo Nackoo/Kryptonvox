@@ -24,8 +24,7 @@ made by Wilda, Itex, Nackoo
   - paste the codes
   - fill the `URL pattern` into `https://voxiom.io/*`
   - click `save`
-  - reload voxiom page <br>
-[User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld) is suggested for placing the code
+  - reload voxiom page <br>[User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld) is suggested for placing the code
 
 ## credits
 - G&W
