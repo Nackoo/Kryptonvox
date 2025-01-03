@@ -13,8 +13,6 @@ made by Wilda, Itex, Nackoo
   - custom keybinding 
   
   coming soon:
-  - custom logo text
-  - upload skin by image
   - custom crosshair
 
 ## installation
