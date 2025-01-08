@@ -38,7 +38,7 @@
     container.style.top = "10px";
     container.style.right = "10px";
     container.style.padding = "10px";
-    container.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    container.style.backgroundColor = "rgba(0,0,0,0.8)";
     container.style.display = localStorage.getItem('isContainerHidden') === 'true' ? "none" : "flex";
     container.style.flexDirection = "column";
     container.style.overflow = "auto";
@@ -875,7 +875,7 @@
 
             if (form.style.display === 'flex') {
                 dropdownWrapper.style.marginBottom = "12px";
-                resetEverythingButton.style.marginTop = "5px";
+                resetEverythingButton.style.marginTop = "8px";
                 dropdown.innerHTML = `<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="17" height="17" style="margin-bottom:-4px" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/></svg> custom keybindings`;
             } else {
                 dropdownWrapper.style.marginBottom = "0";
@@ -890,7 +890,7 @@
         if (isFormVisible) {
             form.style.display = 'flex';
             dropdownWrapper.style.marginBottom = "12px";
-            resetEverythingButton.style.marginTop = "5px";
+            resetEverythingButton.style.marginTop = "8px";
             dropdown.innerHTML = `<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="17" height="17" style="margin-bottom:-4px" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/></svg> custom keybindings`;
         } else {
             form.style.display = 'none';
