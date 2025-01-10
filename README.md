@@ -10,8 +10,11 @@ made by Wilda, Itex, Nackoo
   - focus mode
   - custom background
   - custom chat height
-  - custom logo
-  - better css
+  - custom logo <br>
+    - custom logo size
+    - custom logo margin top
+    - custom logo margin button
+  - better css (disabled if user's using custom css)
   - custom keybinding
   - custom css
   
