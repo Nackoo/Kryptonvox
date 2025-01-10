@@ -10,12 +10,15 @@ made by Wilda, Itex, Nackoo
   - custom chat height
   - custom logo
   - better css
-  - custom keybinding 
+  - custom keybinding
+  - custom css
   
   coming soon:
   - custom crosshair
 
-## installation
+<br>user doesn't have to add css code to the extension anymore, because it's no longer exist, users only have to put the javascript file.
+
+## installation (user Javascript and CSS extension)
   - open `chrome://extensions/`
   - turn on developer mode
   - download [User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld) (suggested)
@@ -29,7 +32,6 @@ made by Wilda, Itex, Nackoo
 ## credits
 - G&W
   - [discord](https://discord.gg/WxGZwXqYuW)
-  - [website](https://gnwstyles.netlify.app/)
 - voxiom
   - [discord](https://discord.gg/YExechPavq)
   - [website](https://voxiom.io) 
