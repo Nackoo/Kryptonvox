@@ -4,7 +4,9 @@ additional tools and styles for a better voxiom.<br>
 made by Wilda, Itex, Nackoo
 
 ## features
-  - skin changer
+  - skin color changer <br>
+    - head color
+    - body color
   - focus mode
   - custom background
   - custom chat height
