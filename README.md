@@ -16,18 +16,35 @@ made by Wilda, Itex, Nackoo
   coming soon:
   - custom crosshair
 
-<br>user doesn't have to add css code to the extension anymore, because it's no longer exist, users only have to put the javascript file.
-
 ## installation (user Javascript and CSS extension)
   - open `chrome://extensions/`
   - turn on developer mode
-  - download [User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld) (suggested)
+  - download [User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld) 
   - click the extension
   - click `add new`
   - paste the codes
   - fill the `URL pattern` into `https://voxiom.io/*`
   - click `save`
-  - reload voxiom page 
+  - reload voxiom page
+
+## installation (tampermonkey)
+  - open `chrome://extensions/`
+  - turn on developer mode 
+  - download [tampermonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+  - click the extension
+  - click `add a new script`
+  - add this <br>
+  `// ==UserScript==
+// @name         voxiom tools
+// @namespace    http://tampermonkey.net/
+// @version      2.7
+// @description  better voxiom
+// @author       Nackoo, Itex, Wilda
+// @match        *://voxiom.io/
+// @grant        none
+// ==/UserScript==`
+  - paste the code
+  - click file, and then save
 
 ## credits
 - G&W
