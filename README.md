@@ -23,7 +23,7 @@ made by Wilda, Itex, Nackoo
 
 ## installation (user Javascript and CSS)
   - open `chrome://extensions/`
-  - turn on developer mode
+  - turn on `developer mode`
   - download [User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld) 
   - click the extension
   - click `add new`
@@ -34,7 +34,7 @@ made by Wilda, Itex, Nackoo
 
 ## installation (tampermonkey)
   - open `chrome://extensions/`
-  - turn on developer mode 
+  - turn on `developer mode `
   - download [tampermonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
   - click the extension
   - click `add a new script`
