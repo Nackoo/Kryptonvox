@@ -34,17 +34,18 @@ made by Wilda, Itex, Nackoo
   - click the extension
   - click `add a new script`
   - add this <br>
-  `// ==UserScript==
-// @name         voxiom tools
-// @namespace    http://tampermonkey.net/
-// @version      2.7
-// @description  better voxiom
-// @author       Nackoo, Itex, Wilda
-// @match        *://voxiom.io/
-// @grant        none
-// ==/UserScript==`
+  `// ==UserScript==`<br>
+`// @name         voxiom tools`<br>
+`// @namespace    http://tampermonkey.net/`<br>
+`// @version      01.10.2025`<br>
+`// @description  better voxiom`<br>
+`// @author       Nackoo, Itex, Wilda`<br>
+`// @match        *://voxiom.io/`<br>
+`// @grant        none`<br>
+`/ ==/UserScript==`<br>
   - paste the code
-  - click file, and then save
+  - click `file`, and then `save`
+  - reload voxiom page
 
 ## credits
 - G&W
