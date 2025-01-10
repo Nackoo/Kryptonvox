@@ -21,7 +21,7 @@ made by Wilda, Itex, Nackoo
   coming soon:
   - custom crosshair
 
-## installation (user Javascript and CSS extension)
+## installation (user Javascript and CSS)
   - open `chrome://extensions/`
   - turn on developer mode
   - download [User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld) 
