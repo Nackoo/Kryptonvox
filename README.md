@@ -14,7 +14,7 @@ made by Wilda, Itex, Nackoo
     - custom logo size
     - custom logo margin top
     - custom logo margin buttom
-  - better css (disabled if user's using custom css)
+  - better css 
   - custom keybinding
   - custom css
   
