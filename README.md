@@ -59,4 +59,4 @@ made by Wilda, Itex, Nackoo
   - [discord](https://discord.gg/YExechPavq)
   - [website](https://voxiom.io)
 
- you can check the css code on `https://kryptonvox.netlify.app/main.css/`
+ you can check the css code on [here](https://kryptonvox.netlify.app/main.css/)
