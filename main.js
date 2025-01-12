@@ -636,80 +636,83 @@
     };
 
     resetEverythingButton.addEventListener("click", function() {
+        const confirmation = confirm("This action cannot be undone. Are you sure you want to reset everything?");
+        if (confirmation) {
 
-        Object.keys(defaultColors).forEach(skin => {
-            localStorage.setItem(`${skin}HeadColor`, defaultColors[skin].head);
-            localStorage.setItem(`${skin}BodyColor`, defaultColors[skin].body);
-        });
+            Object.keys(defaultColors).forEach(skin => {
+                localStorage.setItem(`${skin}HeadColor`, defaultColors[skin].head);
+                localStorage.setItem(`${skin}BodyColor`, defaultColors[skin].body);
+            });
 
-        const customStyleTag = document.querySelector('style[data-custom="true"]');
-        if (customStyleTag) customStyleTag.remove();
+            const customStyleTag = document.querySelector('style[data-custom="true"]');
+            if (customStyleTag) customStyleTag.remove();
 
-        const cssCheckbox = document.querySelector('input[type="checkbox"]');
-        if (cssCheckbox && cssCheckbox.nextSibling?.textContent.includes("Enable Custom CSS")) {
-            cssCheckbox.checked = false;
-            localStorage.setItem('cssCheckbox', 'false');
-        }
-
-        const textarea = document.querySelector('textarea');
-        if (textarea) {
-            textarea.value = "";
-            localStorage.removeItem('customCSS');
-        }
-
-        const applyCSS = () => {
-            const existingLink = document.querySelector('link[data-css]');
-            if (existingLink) {
-                existingLink.remove();
+            const cssCheckbox = document.querySelector('input[type="checkbox"]');
+            if (cssCheckbox && cssCheckbox.nextSibling?.textContent.includes("Enable Custom CSS")) {
+                cssCheckbox.checked = false;
+                localStorage.setItem('cssCheckbox', 'false');
             }
 
-            const defaultCSS = "https://kryptonvox.netlify.app/main.css";
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = defaultCSS;
-            link.dataset.css = 'true';
-            document.head.appendChild(link);
-        };
-        applyCSS();
+            const textarea = document.querySelector('textarea');
+            if (textarea) {
+                textarea.value = "";
+                localStorage.removeItem('customCSS');
+            }
 
-        localStorage.setItem('useFocusMode', 'false');
-        toggleFocusMode(false);
+            const applyCSS = () => {
+                const existingLink = document.querySelector('link[data-css]');
+                if (existingLink) {
+                    existingLink.remove();
+                }
 
-        localStorage.setItem('useDefaultSkin', 'false');
-        defaultSkinCheckbox.checked = false;
+                const defaultCSS = "https://kryptonvox.netlify.app/main.css";
+                const link = document.createElement("link");
+                link.rel = "stylesheet";
+                link.href = defaultCSS;
+                link.dataset.css = 'true';
+                document.head.appendChild(link);
+            };
+            applyCSS();
 
-        localStorage.setItem("chathChecked", "false");
-        localStorage.removeItem("chathHeight");
-        localStorage.removeItem("logoMarginBottom");
-        localStorage.removeItem("logoMarginTop");
+            localStorage.setItem('useFocusMode', 'false');
+            toggleFocusMode(false);
 
-        localStorage.setItem("bgsetChecked", "false");
-        document.querySelector(".bNczYf").style.backgroundImage = "";
-        document.querySelector(".bNczYf").style.filter = "";
-        localStorage.removeItem("backgroundURL");
-        urlInput.value = "";
-        fileInput.value = "";
-        bgsetCheckbox.checked = false;
+            localStorage.setItem('useDefaultSkin', 'false');
+            defaultSkinCheckbox.checked = false;
 
-        localStorage.removeItem("customLogoSettings");
-        const styleTag = document.querySelector("style.custom-logo");
-        if (styleTag) styleTag.remove();
-        logoCheckbox.checked = false;
-        logoUrlInput.value = "";
+            localStorage.setItem("chathChecked", "false");
+            localStorage.removeItem("chathHeight");
+            localStorage.removeItem("logoMarginBottom");
+            localStorage.removeItem("logoMarginTop");
 
-        focusKeybind = {
-            ...defaultKeybinds.focusKeybind
-        };
-        chatKeybind = {
-            ...defaultKeybinds.chatKeybind
-        };
-        containerKeybind = {
-            ...defaultKeybinds.containerKeybind
-        };
+            localStorage.setItem("bgsetChecked", "false");
+            document.querySelector(".bNczYf").style.backgroundImage = "";
+            document.querySelector(".bNczYf").style.filter = "";
+            localStorage.removeItem("backgroundURL");
+            urlInput.value = "";
+            fileInput.value = "";
+            bgsetCheckbox.checked = false;
 
-        saveKeybinds();
+            localStorage.removeItem("customLogoSettings");
+            const styleTag = document.querySelector("style.custom-logo");
+            if (styleTag) styleTag.remove();
+            logoCheckbox.checked = false;
+            logoUrlInput.value = "";
 
-        location.reload();
+            focusKeybind = {
+                ...defaultKeybinds.focusKeybind
+            };
+            chatKeybind = {
+                ...defaultKeybinds.chatKeybind
+            };
+            containerKeybind = {
+                ...defaultKeybinds.containerKeybind
+            };
+
+            saveKeybinds();
+
+            location.reload();
+        }
     });
 
     let focusKeybind = {
@@ -935,14 +938,14 @@
 
         const cssContainer = document.createElement("div");
         cssContainer.style.position = "absolute";
-        cssContainer.style.top = "165px";
+        cssContainer.style.top = "200px";
         cssContainer.style.right = "312px";
         cssContainer.style.padding = "10px";
         cssContainer.style.minWidth = '255px';
         cssContainer.style.backgroundColor = "rgba(0,0,0,0.8)";
         cssContainer.style.display = 'none';
         cssContainer.style.flexDirection = "column";
-        cssContainer.style.minHeight = "400px";
+        cssContainer.style.minHeight = "365px";
         cssContainer.style.border = '1px solid #555555';
         cssContainer.style.fontFamily = 'cursive';
 
@@ -983,21 +986,11 @@
         textareaStyle.innerHTML = `textarea::-webkit-scrollbar{width:2px;height:2px;}textarea::-webkit-scrollbar-thumb{background-color: #888888;border-radius: 10px;}textarea::-webkit-scrollbar-track{background-color: #333333;}`;
         document.head.appendChild(textareaStyle);
 
-        const cssButton = document.createElement("button");
-        cssButton.style.fontSize = "12px";
-        cssButton.style.background = "none";
-        cssButton.style.color = "white";
-        cssButton.style.border = '1px solid white';
-        cssButton.style.padding = '3px';
-        cssButton.textContent = 'save style';
-        cssButton.style.marginTop = "12px";
-
         cssWrapper.appendChild(cssCheckbox);
         cssWrapper.appendChild(cssLabel);
         cssContainer.appendChild(cssWrapper);
         cssContainer.appendChild(cssLabel2);
         cssContainer.appendChild(textarea);
-        cssContainer.appendChild(cssButton);
 
         document.body.appendChild(cssContainer);
 
@@ -1046,24 +1039,26 @@
 
         function updateRealTimeCSS() {
             const customCSS = localStorage.getItem('customCSS');
+            let existingStyleTag = document.querySelector('style[data-custom="true"]');
+
             if (cssCheckbox.checked) {
-                const styleTag = document.createElement('style');
-                styleTag.innerHTML = customCSS;
-                styleTag.dataset.custom = "true";
-                document.head.appendChild(styleTag);
-            } else {
-                const existingStyleTag = document.querySelector('style[data-custom="true"]');
-                if (existingStyleTag) {
-                    existingStyleTag.remove();
+                if (!existingStyleTag) {
+                    existingStyleTag = document.createElement('style');
+                    existingStyleTag.dataset.custom = "true";
+                    document.head.appendChild(existingStyleTag);
                 }
+                existingStyleTag.innerHTML = customCSS;
+            } else if (existingStyleTag) {
+                existingStyleTag.remove();
             }
         }
 
-        cssButton.addEventListener('click', () => {
+        textarea.addEventListener('input', () => {
             const customCSS = textarea.value;
             localStorage.setItem('customCSS', customCSS);
-            applyCSS();
-            updateRealTimeCSS();
+            if (cssCheckbox.checked) {
+                updateRealTimeCSS();
+            }
         });
 
         cssDropdown.addEventListener('click', () => {
