@@ -13,7 +13,7 @@ made by Wilda, Itex, Nackoo
   - custom logo <br>
     - custom logo size
     - custom logo margin top
-    - custom logo margin buttom
+    - custom logo margin bottom
   - better css 
   - custom keybinding
   - custom css
