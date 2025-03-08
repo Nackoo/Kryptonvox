@@ -57,5 +57,4 @@ made by Wilda, Itex, Nackoo
   - [discord](https://discord.gg/YExechPavq)
   - [website](https://voxiom.io)
 
-to support auto-update feature, the code must fetch the code from a file [https://kryptonvox.netlify.app/main.js](https://kryptonvox.netlify.app/main.js) so when the developer updated the code of the file to the website, anything that fetches that file will also get updated. <br> 
-to support custom css, the `/main.js` code must fetch the code from a file [https://kryptonvox.netlify.app/main.css](https://kryptonvox.netlify.app/main.css) so when a user wants to use their own custom css, they'll have to turn off the default style from G&W, instead of removing the style manually, the system will do it automatically. so when custom css is enabled, the default style from `/main.css` will no longer be fetched and the system will apply the custom style provided by the user to the game.
+to support auto-update feature, the code must fetch the code from a file [https://kryptonvox.netlify.app/main.js](https://kryptonvox.netlify.app/main.js) so when the developer updated the code of the file to the website, anything that fetches that file will also get updated.
