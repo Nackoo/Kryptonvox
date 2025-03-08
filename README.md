@@ -7,10 +7,13 @@ made by Wilda, Itex, Nackoo
   - skin color changer <br>
     - head color
     - body color
-  - focus mode
-  - better css 
+  - focus mode 
   - custom keybinding
   - custom css
+    - better css
+    - custom logo
+    - custom chat height
+    - custom background
   - custom crosshair
 
 ## installation (user Javascript and CSS)
