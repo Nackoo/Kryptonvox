@@ -9,11 +9,8 @@ made by Wilda, Itex, Nackoo
     - body color
   - focus mode 
   - custom keybinding
+  - better css
   - custom css
-    - better css
-    - custom logo
-    - custom chat height
-    - custom background
   - custom crosshair
 
 ## installation (user Javascript and CSS)
