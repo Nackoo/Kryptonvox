@@ -4,7 +4,7 @@ additional tools for a better voxiom.<br>
 made by Wilda, Itex, Nackoo
 
 ## features
-  - skin color changer <br>
+  - skin color changer
     - head color
     - body color
   - focus mode 
@@ -12,6 +12,7 @@ made by Wilda, Itex, Nackoo
   - better css
   - custom css
   - custom crosshair
+  - auto-translate
 
 ## installation (user Javascript and CSS)
   - open `chrome://extensions/`
