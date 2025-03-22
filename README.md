@@ -1,6 +1,7 @@
 # Voxify
 
-additional tools for a better voxiom.<br>
+custom made client for a better voxiom.<br>
+made for <mark>browsers only!</mark> do not attempt to set it somewhere else<br>
 made by Wilda, Itex, Nackoo
 
 ## features
