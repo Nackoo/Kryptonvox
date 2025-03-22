@@ -33,14 +33,14 @@ made by Wilda, Itex, Nackoo
   - click `add a new script`
   - add this <br>
   `// ==UserScript==`<br>
-`// @name         voxiom tools`<br>
+`// @name         voxify`<br>
 `// @namespace    http://tampermonkey.net/`<br>
-`// @version      01.10.2025`<br>
-`// @description  better voxiom`<br>
+`// @version      03.22.2025`<br>
+`// @description  krypton`<br>
 `// @author       Nackoo, Itex, Wilda`<br>
 `// @match        *://voxiom.io/`<br>
 `// @grant        none`<br>
-`/ ==/UserScript==`<br>
+`// ==/UserScript==`<br>
   - paste the code
   - click `file`, and then `save`
   - reload voxiom page
