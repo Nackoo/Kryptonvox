@@ -1,4 +1,4 @@
-# Voxify
+# <img src="https://kryptonvox.netlify.app/nac.png" alt="Logo" width="200"> Voxify
 
 additional tools for a better voxiom.<br>
 made by Wilda, Itex, Nackoo
@@ -46,10 +46,11 @@ made by Wilda, Itex, Nackoo
   - reload voxiom page
 
 ## credits
-- G&W
+- voxify
+  - [website](https://kryptonvox.netlify.app)
   - [discord](https://discord.gg/WxGZwXqYuW)
 - voxiom
   - [discord](https://discord.gg/YExechPavq)
   - [website](https://voxiom.io)
 
-to support auto-update feature, the code must fetch the code from a file [https://kryptonvox.netlify.app/main.js](https://kryptonvox.netlify.app/main.js) so when the developer updated the code of the file to the website, anything that fetches that file will also get updated.
+Schtatistines
