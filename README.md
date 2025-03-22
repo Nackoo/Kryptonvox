@@ -19,19 +19,17 @@ made by Wilda, Itex, Nackoo
   - open `chrome://extensions/`
   - turn on `developer mode`
   - download [User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld) 
-  - click the extension
-  - click `add new`
-  - paste the codes
+  - `add new`
+  - paste the codes on the JavaScript section
   - fill the `URL pattern` into `https://voxiom.io/*`
-  - click `save`
+  - `save`
   - reload voxiom page
 
 ## installation (tampermonkey)
   - open `chrome://extensions/`
   - turn on `developer mode `
   - download [tampermonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-  - click the extension
-  - click `add a new script`
+  - `add a new script`
   - add this <br>
   `// ==UserScript==`<br>
 `// @name         voxify`<br>
@@ -42,8 +40,8 @@ made by Wilda, Itex, Nackoo
 `// @match        *://voxiom.io/`<br>
 `// @grant        none`<br>
 `// ==/UserScript==`<br>
-  - paste the code
-  - click `file`, and then `save`
+  - paste the codes
+  - `file`, and `save`
   - reload voxiom page
 
 ## credits
