@@ -1,4 +1,4 @@
-# <img src="https://kryptonvox.netlify.app/nac.png" alt="Logo" width="40" style="border-radius:10px;"> Voxify
+# <img src="https://kryptonvox.netlify.app/nac.png" alt="Logo" width="40"> Voxify
 
 additional tools for a better voxiom.<br>
 made by Wilda, Itex, Nackoo
