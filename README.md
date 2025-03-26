@@ -53,4 +53,4 @@ made by Wilda, Itex, Nackoo
   - [discord](https://discord.gg/YExechPavq)
   - [website](https://voxiom.io)
 
-Schtatistines
+Cat :3
