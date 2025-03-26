@@ -20,7 +20,7 @@ made by Wilda, Itex, Nackoo
   - turn on `developer mode`
   - download [User Javascript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld) 
   - `add new`
-  - paste the codes on the JavaScript section
+  - paste the codes from `main.js` on the JavaScript section
   - fill the `URL pattern` into `https://voxiom.io/*`
   - `save`
   - reload voxiom page
@@ -40,7 +40,7 @@ made by Wilda, Itex, Nackoo
 `// @match        *://voxiom.io/`<br>
 `// @grant        none`<br>
 `// ==/UserScript==`<br>
-  - paste the codes
+  - paste the codes from `main.js`
   - `file`, and `save`
   - reload voxiom page
 
