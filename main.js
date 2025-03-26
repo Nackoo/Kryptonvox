@@ -11,4 +11,4 @@ function fetchAndApplyScript(scriptUrl) {
 	scriptElement.onerror = () =>
 		console.error(`Failed to load script from ${updatedScriptUrl}.`);
 }
-fetchAndApplyScript('https://kryptonvox.netlify.app/main.js'); 
+fetchAndApplyScript('https://kryptonvox.netlify.app/main.js');
