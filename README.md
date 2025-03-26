@@ -8,10 +8,11 @@ made by Wilda, Itex, Nackoo
   - skin color changer
     - head color
     - body color
+  - styles
+    - better css
+    - custom css 
   - focus mode 
   - custom keybinding
-  - better css
-  - custom css
   - custom crosshair
   - auto-translate
 
