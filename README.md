@@ -12,7 +12,7 @@ made by Wilda, Itex, Nackoo
     - better css
     - custom css
   - translator
-    - chat auto-translate
+    - chat auto-translate (limited usage)
     - chat translator
   - focus mode 
   - custom keybinding
