@@ -10,11 +10,13 @@ made by Wilda, Itex, Nackoo
     - body color
   - styles
     - better css
-    - custom css 
+    - custom css
+  - translator
+    - chat auto-translate
+    - chat translator
   - focus mode 
   - custom keybinding
   - custom crosshair
-  - auto-translate
 
 ## installation (user Javascript and CSS)
   - open `chrome://extensions/`
