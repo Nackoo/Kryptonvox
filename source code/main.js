@@ -36,7 +36,7 @@ const savedColors = {
 	},
 };
 
-document.title = "voxiom.io";
+document.title = 'voxiom.io';
 
 const container = document.createElement('div');
 container.style.position = 'absolute';
@@ -93,7 +93,7 @@ container.appendChild(info);
 
 const ver = document.createElement('div');
 ver.innerHTML = 'krypton';
-ver.title = "version 20 march 2025"
+ver.title = 'version 20 march 2025';
 ver.style.fontSize = '14px';
 ver.style.position = 'absolute';
 ver.style.right = '8px';
@@ -453,7 +453,7 @@ function mainFunction() {
                         detectAndTranslate(text).then(result => {
                             if (result && result.translatedText) {
                                 let translatedText = result.translatedText;
-                                let detectedLang = languageNames[result.language] || "Unknown";
+                                let detectedLang = languageNames[result.language] || "<span style='color:#e67e22'>unknown</span>: <span style='color:#f9ca24'>consider viewing the original</span>";
                                 let parent = node.parentNode;
 
                                 if (!parent.innerHTML.includes(translatedText)) {
@@ -537,8 +537,8 @@ function mainFunction() {
 const trwrapper = document.createElement('div');
 trwrapper.style.display = 'flex';
 trwrapper.style.alignItems = 'center';
-trwrapper.style.marginTop = "6px";
-trwrapper.style.marginBottom = "1px";
+trwrapper.style.marginTop = '6px';
+trwrapper.style.marginBottom = '1px';
 
 let trcheckbox = document.createElement('input');
 trcheckbox.type = 'checkbox';
@@ -548,17 +548,17 @@ trcheckbox.checked = localStorage.getItem('scriptEnabled') === 'true';
 let trlabel = document.createElement('span');
 trlabel.htmlFor = 'scriptToggle';
 trlabel.textContent = 'enable auto-translate';
-trlabel.style.fontSize = "14px";
-trlabel.style.marginLeft = "7px";
+trlabel.style.fontSize = '14px';
+trlabel.style.marginLeft = '10px';
 
 function toggleScript(event) {
-    if (confirm("reload?")) {
-        let enabled = trcheckbox.checked;
-        localStorage.setItem('scriptEnabled', enabled);
-        location.reload();
-    } else {
-        trcheckbox.checked = !trcheckbox.checked; 
-    }
+	if (confirm('reload?')) {
+		let enabled = trcheckbox.checked;
+		localStorage.setItem('scriptEnabled', enabled);
+		location.reload();
+	} else {
+		trcheckbox.checked = !trcheckbox.checked;
+	}
 }
 
 if (trcheckbox.checked) {
@@ -567,27 +567,264 @@ if (trcheckbox.checked) {
 
 trcheckbox.addEventListener('change', toggleScript);
 
-	const hrr10 = document.createElement('hr');
-	hrr10.style.border = '1px solid gray';
-	hrr10.style.marginTop = '9px';
-	hrr10.style.marginBottom = '4px';
-	container.appendChild(hrr10);
+const hrr10 = document.createElement('hr');
+hrr10.style.border = '1px solid gray';
+hrr10.style.marginTop = '9px';
+hrr10.style.marginBottom = '4px';
+container.appendChild(hrr10);
 
-	trwrapper.appendChild(trcheckbox);
-	trwrapper.appendChild(trlabel);
-	container.appendChild(trwrapper);
+trwrapper.appendChild(trcheckbox);
+trwrapper.appendChild(trlabel);
+container.appendChild(trwrapper);
+
+function initializeScript() {
+	'use strict';
+
+	const languages = {
+		ja: 'Japanese',
+		ko: 'Korean',
+		'zh-CN': 'Chinese (Simplified)',
+		'zh-TW': 'Chinese (Traditional)',
+		fr: 'French',
+		de: 'German',
+		es: 'Spanish',
+		ru: 'Russian',
+		ar: 'Arabic',
+		it: 'Italian',
+		pt: 'Portuguese',
+		nl: 'Dutch',
+		tr: 'Turkish',
+		pl: 'Polish',
+		id: 'Indonesian',
+		th: 'Thai',
+		vi: 'Vietnamese',
+		hi: 'Hindi',
+		sv: 'Swedish',
+		tl: 'Tagalog',
+	};
+
+	let uiContainer = document.createElement('div');
+	uiContainer.style.position = 'absolute';
+	uiContainer.style.background = 'rgba(0, 0, 0, 0.3)';
+	uiContainer.style.padding = '8px';
+	uiContainer.style.zIndex = '800';
+	uiContainer.style.display = 'none';
+	uiContainer.style.borderTop = '1px solid grey';
+	uiContainer.style.maxWidth = '300px';
+	uiContainer.style.fontSize = '14px';
+
+	let inputBox = document.createElement('input');
+	inputBox.type = 'text';
+	inputBox.placeholder = 'alt + shift to type';
+	inputBox.style.width = '100%';
+	inputBox.style.padding = '5px';
+	inputBox.style.fontSize = '12px';
+	inputBox.style.color = 'white';
+	inputBox.style.border = '1px solid grey';
+	inputBox.style.background = 'rgba(0, 0, 0, 0.2)';
+	inputBox.style.marginRight = '5px';
+
+	let altPressed = false;
+
+	document.addEventListener('keydown', function (event) {
+		if (event.key === 'Alt') {
+			altPressed = true;
+		} else if (altPressed && event.key === 'Shift') {
+			event.preventDefault();
+			inputBox.focus();
+			altPressed = false;
+		}
+	});
+
+	document.addEventListener('keyup', function (event) {
+		if (event.key === 'Alt') {
+			altPressed = false;
+		}
+	});
+
+	inputBox.addEventListener('keydown', function (event) {
+		if (event.key !== 'Enter') {
+			event.stopPropagation();
+		}
+	});
+
+	let lastUsedLang = localStorage.getItem('selectedLanguage') || 'ja';
+
+	let langSelect = document.createElement('select');
+	langSelect.style.background = 'rgba(0, 0, 0, 0.2)';
+	langSelect.style.color = 'grey';
+	langSelect.style.fontSize = '12px';
+
+	for (let lang in languages) {
+		let option = document.createElement('option');
+		option.style.background = '#141414';
+		option.style.color = 'white';
+		option.value = lang;
+		option.textContent = languages[lang];
+		langSelect.appendChild(option);
+	}
+
+	langSelect.value = lastUsedLang;
+
+	langSelect.addEventListener('change', function () {
+		localStorage.setItem('selectedLanguage', langSelect.value);
+	});
+
+	uiContainer.appendChild(inputBox);
+	uiContainer.appendChild(langSelect);
+	document.body.appendChild(uiContainer);
+
+	async function translateText(text, targetLang) {
+		const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
+		try {
+			const response = await fetch(url);
+			const result = await response.json();
+			return result[0].map((item) => item[0]).join('');
+		} catch (error) {
+			console.error('Translation error:', error);
+			return text;
+		}
+	}
+
+	function updateOutputValue(text) {
+		setTimeout(() => {
+			let outputInput = document.querySelector('.sc-dpAhYB.ipDvnq');
+			if (outputInput) {
+				let nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+					window.HTMLInputElement.prototype,
+					'value'
+				).set;
+				nativeInputValueSetter.call(outputInput, text);
+
+				let inputEvent = new Event('input', { bubbles: true });
+				outputInput.dispatchEvent(inputEvent);
+			}
+		}, 10);
+	}
+
+	let debounceTimer;
+	function handleInputChange(event) {
+		clearTimeout(debounceTimer);
+		debounceTimer = setTimeout(async () => {
+			let text = inputBox.value.trim();
+			let targetLang = langSelect.value;
+
+			if (text) {
+				let translatedText = await translateText(text, targetLang);
+				updateOutputValue(translatedText);
+			} else {
+				updateOutputValue('');
+			}
+		}, 300);
+	}
+
+	function attachListeners() {
+		inputBox.addEventListener('input', handleInputChange);
+
+		inputBox.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter') {
+				let outputInput = document.querySelector('.sc-dpAhYB.ipDvnq');
+				if (outputInput) {
+					outputInput.focus();
+				}
+
+				inputBox.value = '';
+			}
+		});
+
+		inputBox.addEventListener('focus', () => updateOutputValue(''));
+	}
+
+	attachListeners();
+
+	const observer = new MutationObserver(() => {
+		attachListeners();
+	});
+
+	observer.observe(document.body, { childList: true, subtree: true });
+
+	function updateUIPosition() {
+		let targetElement = document.querySelector('.sc-dpAhYB.ipDvnq');
+		if (targetElement) {
+			let rect = targetElement.getBoundingClientRect();
+			uiContainer.style.top = `${rect.bottom}px`;
+			uiContainer.style.left = `${rect.left}px`;
+			uiContainer.style.width = `${rect.width}px`;
+			uiContainer.style.visibility = 'visible';
+		} else {
+			uiContainer.style.visibility = 'hidden';
+		}
+	}
+
+	let uiInterval;
+
+	let style = document.createElement('style');
+	style.innerHTML = `.sc-dpAhYB.ipDvnq { margin-bottom: 55px; }`;
+
+	let translateContainer = document.createElement('div');
+	translateContainer.style.color = 'white';
+	translateContainer.style.display = 'flex';
+	translateContainer.style.alignItems = 'center';
+	translateContainer.style.marginTop = '7px';
+	translateContainer.style.marginBottom = '1px';
+
+	let translatecheckbox = document.createElement('input');
+	translatecheckbox.type = 'checkbox';
+	translatecheckbox.checked = localStorage.getItem('translateMsg') === 'true';
+
+	let translatelabel = document.createElement('label');
+	translatelabel.textContent = 'chat translator';
+	translatelabel.style.marginLeft = '10px';
+	translatelabel.style.fontSize = '14px';
+
+	function enableScript() {
+		uiContainer.style.display = 'flex';
+		document.head.appendChild(style);
+		uiInterval = setInterval(updateUIPosition, 1000);
+		localStorage.setItem('translateMsg', 'true');
+	}
+
+	function disableScript() {
+		uiContainer.style.display = 'none';
+		clearInterval(uiInterval);
+		if (style.parentNode) {
+			style.parentNode.removeChild(style);
+		}
+		localStorage.setItem('translateMsg', 'false');
+	}
+
+	if (translatecheckbox.checked) {
+		enableScript();
+	} else {
+		disableScript();
+	}
+
+	translatecheckbox.addEventListener('change', function () {
+		if (translatecheckbox.checked) {
+			enableScript();
+		} else {
+			disableScript();
+		}
+	});
+
+	translateContainer.appendChild(translatecheckbox);
+	translateContainer.appendChild(translatelabel);
+	container.appendChild(translateContainer);
+}
+
+initializeScript();
 
 const resetEverythingButton = document.createElement('button');
 resetEverythingButton.textContent = 'restore defaults';
 resetEverythingButton.style.padding = '3px';
 resetEverythingButton.style.cursor = 'pointer';
-resetEverythingButton.style.background = "none";
+resetEverythingButton.style.background = 'none';
 resetEverythingButton.style.transition = 'background 0.1s ease';
 resetEverythingButton.addEventListener('mouseover', () => {
-    resetEverythingButton.style.background = '#b10000';
+	resetEverythingButton.style.background = '#b10000';
 });
 resetEverythingButton.addEventListener('mouseout', () => {
-    resetEverythingButton.style.background = 'none';
+	resetEverythingButton.style.background = 'none';
 });
 resetEverythingButton.style.border = '1px solid white';
 resetEverythingButton.style.color = 'white';
@@ -613,9 +850,9 @@ resetEverythingButton.addEventListener('click', function () {
 		localStorage.removeItem('crosshairEnabled');
 		localStorage.removeItem('crosshairUrl');
 		localStorage.removeItem('crosshairSize');
-		
+
 		trcheckbox.checked = false;
-		localStorage.setItem("scriptEnabled", "false");
+		localStorage.setItem('scriptEnabled', 'false');
 
 		enableCheckbox.checked = false;
 		crosshairUrlInput.value = '';
@@ -651,8 +888,8 @@ resetEverythingButton.addEventListener('click', function () {
 			if (existingLink) {
 				existingLink.remove();
 			}
- 
-      const defaultCSS = 'https://kryptonvox.netlify.app/main.css';
+
+			const defaultCSS = 'https://kryptonvox.netlify.app/main.css';
 			const link = document.createElement('link');
 			link.rel = 'stylesheet';
 			link.href = defaultCSS;
@@ -985,7 +1222,7 @@ function createKeybindForm() {
 	cssWrapper.style.display = 'flex';
 	cssWrapper.style.alignItems = 'center';
 	cssWrapper.style.marginTop = '10px';
-	cssWrapper.style.marginBottom = "3px";
+	cssWrapper.style.marginBottom = '3px';
 
 	const cssCheckbox = document.createElement('input');
 	cssCheckbox.type = 'checkbox';
