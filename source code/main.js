@@ -3,18 +3,9 @@ const originalSkinURL2 = 'https://voxiom.io/package/aef55bdd0c3c3c3734f8.png';
 const originalSkinURL3 = 'https://voxiom.io/package/ecca1227c2e0406be225.png';
 
 const defaultColors = {
-	default: {
-		head: '#24b44d',
-		body: '#ee1c23',
-	},
-	ruby: {
-		head: '#ffffff',
-		body: '#ee1c23',
-	},
-	sapphire: {
-		head: '#ffffff',
-		body: '#1919ff',
-	},
+	default: { head: '#24b44d', body: '#ee1c23' },
+	ruby: { head: '#ffffff', body: '#ee1c23' },
+	sapphire: { head: '#ffffff', body: '#1919ff' } 
 };
 
 const savedColors = {
@@ -35,8 +26,6 @@ const savedColors = {
 			localStorage.getItem('sapphireBodyColor') || defaultColors.sapphire.body,
 	},
 };
-
-document.title = 'voxiom.io';
 
 const container = document.createElement('div');
 container.style.position = 'absolute';
@@ -93,7 +82,7 @@ container.appendChild(info);
 
 const ver = document.createElement('div');
 ver.innerHTML = 'krypton';
-ver.title = 'version 20 march 2025';
+ver.title = 'version 28 march 2025';
 ver.style.fontSize = '14px';
 ver.style.position = 'absolute';
 ver.style.right = '8px';
@@ -623,28 +612,7 @@ container.appendChild(trwrapper);
 function initializeScript() {
 	'use strict';
 
-	const languages = {
-		ja: 'Japanese',
-		ko: 'Korean',
-		'zh-CN': 'Chinese (Simplified)',
-		'zh-TW': 'Chinese (Traditional)',
-		fr: 'French',
-		de: 'German',
-		es: 'Spanish',
-		ru: 'Russian',
-		ar: 'Arabic',
-		it: 'Italian',
-		pt: 'Portuguese',
-		nl: 'Dutch',
-		tr: 'Turkish',
-		pl: 'Polish',
-		id: 'Indonesian',
-		th: 'Thai',
-		vi: 'Vietnamese',
-		hi: 'Hindi',
-		sv: 'Swedish',
-		tl: 'Tagalog',
-	};
+  const languages={ja:"Japanese",ko:"Korean","zh-CN":"Chinese (Simplified)","zh-TW":"Chinese (Traditional)",fr:"French",de:"German",es:"Spanish",ru:"Russian",ar:"Arabic",it:"Italian",pt:"Portuguese",nl:"Dutch",tr:"Turkish",pl:"Polish",id:"Indonesian",th:"Thai",vi:"Vietnamese",hi:"Hindi",sv:"Swedish",tl:"Tagalog"};
 
 	let uiContainer = document.createElement('div');
 	uiContainer.style.position = 'absolute';
