@@ -8,13 +8,13 @@ made by Wilda, Itex, Nackoo
   - head color
   - body color
 - styles
-  - better css
-  - custom css
+  - better built-in css
+  - custom css loader
 - translator
   - chat auto-translate (limited usage)
   - chat translator
+- custom client keybinding 
 - focus mode 
-- custom keybinding
 - custom crosshair
 
 ## installation 
