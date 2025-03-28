@@ -1,4 +1,4 @@
-# Voxify
+# Kryptonvox
 
 custom made client for a better voxiom.<br>
 made by Wilda, Itex, Nackoo
