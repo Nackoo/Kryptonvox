@@ -27,4 +27,4 @@ custom made client for a better voxiom.<br>
   - [discord](https://discord.gg/YExechPavq)
   - [website](https://voxiom.io)
 
-by Nackoo, Wilda, Itex [community server](https://discord.gg/WxGZwXqYuW)
+by Nackoo, Wilda, Itex | [community server](https://discord.gg/WxGZwXqYuW) | cat 
