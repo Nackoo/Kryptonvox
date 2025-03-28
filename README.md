@@ -1,7 +1,6 @@
 # Kryptonvox
 
 custom made client for a better voxiom.<br>
-made by Wilda, Itex, Nackoo
 
 ## features
 - skin color changer
@@ -28,4 +27,4 @@ made by Wilda, Itex, Nackoo
   - [discord](https://discord.gg/YExechPavq)
   - [website](https://voxiom.io)
 
-[community server](https://discord.gg/WxGZwXqYuW)
+by Nackoo, Wilda, Itex [community server](https://discord.gg/WxGZwXqYuW)
