@@ -384,6 +384,38 @@ window.addEventListener('load', () => {
 	updateCrosshair();
 });
 
+function replaceSchtatistines(span) {
+	if (span.dataset.processedScht) return;
+
+	let computedColor = window.getComputedStyle(span).color;
+
+	if (computedColor === 'rgb(255, 255, 255)') {
+		span.innerHTML = span.innerHTML.replace(
+			/Schtatistines/g,
+			`<span style="color:#e67e22">[</span><span style="color:#23d8ff">Krypton</span><span style="color:#e67e22">]</span> Schtatistines`
+		);
+		span.dataset.processedScht = 'true';
+	}
+}
+
+document
+	.querySelectorAll('.sc-wkwDy.gTfPhn > span:first-child')
+	.forEach(replaceSchtatistines);
+
+const observer = new MutationObserver((mutations) => {
+	mutations.forEach((mutation) => {
+		mutation.addedNodes.forEach((node) => {
+			if (node.nodeType === 1) {
+				node
+					.querySelectorAll?.('.sc-wkwDy.gTfPhn > span:first-child')
+					.forEach(replaceSchtatistines);
+			}
+		});
+	});
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
+
 function mainFunction() {
 	function injectScript(code) {
 		let script = document.createElement('script');
@@ -520,15 +552,26 @@ function mainFunction() {
             }
         })();
         
-        function checkForUntranslatedMessages() {
-            document.querySelectorAll(targetSelector).forEach(el => {
-                if (!el.dataset.translated) {
-                    translateTextNodes(el);
+        function observeUntranslatedMessages() {
+    let observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            mutation.addedNodes.forEach(node => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    let targetNode = node.querySelector(targetSelector) || (node.matches(targetSelector) ? node : null);
+                    if (targetNode && !targetNode.dataset.translated) {
+                        translateTextNodes(targetNode);
+                    }
                 }
             });
-        }
+        });
+    });
 
-        setInterval(checkForUntranslatedMessages, 1000);
+    let config = { childList: true, subtree: true };
+    observer.observe(document.body, config);
+}
+
+observeUntranslatedMessages();
+
     `;
 
 	injectScript(scriptContent);
@@ -1520,191 +1563,3 @@ function createGradientTexture(headColor, bodyColor) {
 
 	return canvas;
 }
-
-const loadingScreen = document.createElement('div');
-loadingScreen.style.position = 'fixed';
-loadingScreen.style.top = '0';
-loadingScreen.style.left = '0';
-loadingScreen.style.width = '100%';
-loadingScreen.style.height = '100%';
-loadingScreen.style.display = 'flex';
-loadingScreen.style.backgroundColor = 'black';
-loadingScreen.style.justifyContent = 'center';
-loadingScreen.style.alignItems = 'center';
-loadingScreen.style.flexDirection = 'column';
-loadingScreen.style.zIndex = '9999';
-
-const img2 = document.createElement('img');
-img2.src = 'https://i.imgur.com/XfbtnPS.png';
-img2.style.width = 'auto';
-img2.style.height = '222px';
-img2.style.marginTop = '-100px';
-
-const img1 = document.createElement('img');
-img1.src =
-	'https://upload.wikimedia.org/wikipedia/commons/3/3f/Windows-loading-cargando.gif';
-img1.style.width = 'auto';
-img1.style.height = '30px';
-
-const span1 = document.createElement('span');
-span1.textContent = 'welcome...';
-span1.style.color = '#e8e8e8';
-span1.style.fontSize = '19px';
-span1.style.marginLeft = '15px';
-span1.style.setProperty('font-family', 'sans-serif', 'important');
-
-const img1Container = document.createElement('div');
-img1Container.style.display = 'flex';
-img1Container.style.alignItems = 'center';
-img1Container.style.marginTop = '-10px';
-img1Container.appendChild(img1);
-img1Container.appendChild(span1);
-
-const termscon = document.createElement('div');
-termscon.style.height = '434px';
-termscon.style.width = '434px';
-termscon.style.position = 'absolute';
-termscon.style.background = '#1a1a1a';
-termscon.style.borderRight = '5px solid #555555';
-termscon.style.borderBottom = '5px solid #555555';
-termscon.style.fontFamily = 'sans-serif';
-termscon.style.padding = '10px';
-termscon.style.display = 'none';
-
-const termsspan = document.createElement('span');
-termsspan.textContent = 'before you go, you must agree to the following:';
-termsspan.style.color = 'white';
-termsspan.style.fontSize = '14px';
-
-const textarea1 = document.createElement('textarea');
-textarea1.style.resize = 'none';
-textarea1.style.marginTop = '13px';
-textarea1.style.background = '#222222';
-textarea1.style.color = 'white';
-textarea1.style.setProperty('font-family', 'monospace', 'important');
-textarea1.style.width = '412px';
-textarea1.style.height = '348px';
-textarea1.readOnly = true;
-textarea1.style.padding = '10px';
-textarea1.innerHTML = `
-Acceptance of Use
-By using this code, you agree to the terms outlined below. If you do not agree to these terms, you are prohibited from using this code.
-
-Risk and Disclaimer
-The code utilizes localStorage to store user preferences and settings. This storage method is local to the user's browser and device. The developer is not responsible for any data loss, unintended behavior, or conflicts arising from browser settings or security configurations.
-
-Prohibited Actions
-Users are strictly prohibited from modifying, reverse-engineering, or repackaging this code for redistribution or any other purpose without explicit permission from the developer.
-Misuse of this code for malicious purposes or to violate any applicable laws is strictly prohibited.
-
-Security Notice
-The code includes features that depend on user-provided inputs, such as URLs or files. Users are advised to ensure the safety and integrity of any input data to avoid introducing security vulnerabilities.
-Changes made to settings via this code are stored locally. Users are responsible for ensuring the security of their own devices and browsers.
-
-Warranty and Liability
-This code is provided "as is" without any warranty, expressed or implied, including but not limited to warranties of merchantability or fitness for a particular purpose.
-The developer is not liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use the code.
-`;
-
-const wrapwrap = document.createElement('div');
-wrapwrap.style.display = 'flex';
-wrapwrap.style.alignItems = 'center';
-wrapwrap.style.marginTop = '12px';
-
-const agreecheck = document.createElement('input');
-agreecheck.type = 'checkbox';
-agreecheck.style.marginRight = '10px';
-agreecheck.style.marginTop = '-1px';
-
-const agreelabel = document.createElement('span');
-agreelabel.textContent = 'i have read and agreed';
-agreelabel.style.fontSize = '14px';
-agreelabel.style.color = 'white';
-agreelabel.style.marginTop = '-3px';
-
-const disaggreelabel = document.createElement('span');
-disaggreelabel.textContent = '*required';
-disaggreelabel.style.fontSize = '14px';
-disaggreelabel.style.color = '#d93025';
-disaggreelabel.style.marginTop = '-3px';
-disaggreelabel.style.marginLeft = '5px';
-disaggreelabel.style.display = 'none';
-
-const agreebuttonparent = document.createElement('div');
-agreebuttonparent.style.display = 'flex';
-agreebuttonparent.style.justifyContent = 'flex-end';
-
-const agreebutton = document.createElement('button');
-agreebutton.textContent = 'ENTER';
-agreebutton.style.background = 'none';
-agreebutton.style.border = 'none';
-agreebutton.style.textDecoration = 'underline';
-agreebutton.style.marginTop = '-20px';
-agreebutton.style.color = 'white';
-
-termscon.appendChild(termsspan);
-termscon.appendChild(textarea1);
-termscon.appendChild(wrapwrap);
-
-wrapwrap.appendChild(agreecheck);
-wrapwrap.appendChild(agreelabel);
-wrapwrap.appendChild(disaggreelabel);
-
-agreebuttonparent.appendChild(agreebutton);
-termscon.appendChild(agreebuttonparent);
-
-loadingScreen.appendChild(termscon);
-
-loadingScreen.appendChild(img2);
-loadingScreen.appendChild(img1Container);
-
-document.body.appendChild(loadingScreen);
-
-function showLoadingScreen() {
-	const hasSeenLoadingScreen1 = localStorage.getItem('hasSeenLoadingScreen1');
-	if (!hasSeenLoadingScreen1) {
-		loadingScreen.style.display = 'flex';
-		setTimeout(() => {
-			img1Container.style.display = 'none';
-			img2.style.display = 'none';
-			termscon.style.display = 'block';
-		}, 15000);
-	} else {
-		loadingScreen.style.display = 'none';
-	}
-}
-
-function handleAgreeButtonClick() {
-	if (agreecheck.checked) {
-		disaggreelabel.style.display = 'none';
-		localStorage.setItem('hasSeenLoadingScreen1', 'true');
-		loadingScreen.style.display = 'none';
-		wirklich();
-	} else {
-		disaggreelabel.style.display = 'block';
-	}
-}
-
-function saveCheckboxState() {
-	localStorage.setItem('agreecheckState', agreecheck.checked);
-}
-
-function restoreCheckboxState() {
-	const savedState = localStorage.getItem('agreecheckState');
-	agreecheck.checked = savedState === 'true';
-}
-
-function handleBeforeUnload(event) {
-	const hasSeenLoadingScreen1 = localStorage.getItem('hasSeenLoadingScreen1');
-	if (!hasSeenLoadingScreen1 || !agreecheck.checked) {
-		event.preventDefault();
-		event.returnValue = '';
-	}
-}
-
-agreebutton.addEventListener('click', handleAgreeButtonClick);
-agreecheck.addEventListener('change', saveCheckboxState);
-window.addEventListener('beforeunload', handleBeforeUnload);
-
-restoreCheckboxState();
-showLoadingScreen();
