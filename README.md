@@ -1,7 +1,6 @@
 # Voxify
 
 custom made client for a better voxiom.<br>
-works on <mark>browsers only!</mark> do not attempt to set it somewhere else<br>
 made by Wilda, Itex, Nackoo
 
 ## features
@@ -47,12 +46,9 @@ made by Wilda, Itex, Nackoo
   - `file`, and `save`
   - reload voxiom page
 
-## credits
-- voxify
-  - [website](https://kryptonvox.netlify.app)
-  - [discord](https://discord.gg/WxGZwXqYuW)
-- voxiom
+## credit
+- Voxiom
   - [discord](https://discord.gg/YExechPavq)
   - [website](https://voxiom.io)
 
-Cat :3
+[community server](https://discord.gg/WxGZwXqYuW)
