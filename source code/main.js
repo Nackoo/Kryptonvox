@@ -373,34 +373,22 @@ window.addEventListener('load', () => {
 	updateCrosshair();
 });
 
-function replaceSchtatistines(span) {
-	if (span.dataset.processedScht) return;
+function replaceCuteEmoji() {
+    document.querySelectorAll('.sc-wkwDy.gTfPhn > span:last-child').forEach(span => {
+        let content = span.innerHTML.trim();
 
-	let computedColor = window.getComputedStyle(span).color;
-
-	if (computedColor === 'rgb(255, 255, 255)') {
-		span.innerHTML = span.innerHTML.replace(
-			/Schtatistines/g,
-			`<span style="color:#e67e22">[</span><span style="color:#23d8ff">Krypton</span><span style="color:#e67e22">]</span> Schtatistines`
-		);
-		span.dataset.processedScht = 'true';
-	}
+        if (content === ": :cute:") {
+            span.innerHTML = `: <img style="margin-bottom:-5px;height:35px;width:auto;" src="https://i.imgur.com/brZJSAn.png">`;
+        } else if (content.includes(":cute:")) {
+            span.innerHTML = content.replace(/:cute:/g, `<img src="https://i.imgur.com/brZJSAn.png" style="height:20px;width:auto;margin-bottom:-5px;">`);
+        }
+    });
 }
 
-document
-	.querySelectorAll('.sc-wkwDy.gTfPhn > span:first-child')
-	.forEach(replaceSchtatistines);
+replaceCuteEmoji();
 
-const observer = new MutationObserver((mutations) => {
-	mutations.forEach((mutation) => {
-		mutation.addedNodes.forEach((node) => {
-			if (node.nodeType === 1) {
-				node
-					.querySelectorAll?.('.sc-wkwDy.gTfPhn > span:first-child')
-					.forEach(replaceSchtatistines);
-			}
-		});
-	});
+const observer = new MutationObserver(() => {
+    replaceCuteEmoji(); 
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
@@ -621,7 +609,6 @@ function initializeScript() {
 	uiContainer.style.zIndex = '800';
 	uiContainer.style.display = 'none';
 	uiContainer.style.borderTop = '1px solid grey';
-	uiContainer.style.maxWidth = '300px';
 	uiContainer.style.fontSize = '14px';
 
 	let inputBox = document.createElement('input');
@@ -760,7 +747,7 @@ function initializeScript() {
 			let rect = targetElement.getBoundingClientRect();
 			uiContainer.style.top = `${rect.bottom}px`;
 			uiContainer.style.left = `${rect.left}px`;
-			uiContainer.style.width = `${rect.width}px`;
+			uiContainer.style.width = `${rect.width - 16}px`;
 			uiContainer.style.visibility = 'visible';
 		} else {
 			uiContainer.style.visibility = 'hidden';
