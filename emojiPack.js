@@ -1,4 +1,4 @@
-//add this below your main.js code or separately
+//add this separately from the main.js code
 
 document.head.appendChild(Object.assign(document.createElement('script'), { 
     src: 'https://kryptonvox.netlify.app/emojiPack.js?v=' + Date.now(),
