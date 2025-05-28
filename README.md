@@ -23,6 +23,8 @@ custom made client for a better voxiom.<br>
 - Click Save and refresh voxiom page.
 
 ## credit
-- Voxiom.io (ThriveR) | [discord](https://discord.gg/YExechPavq) | [website](https://voxiom.io)
+- Nackoo
+- Wilda
+- Itex
 
-by Nackoo, Wilda, Itex | [community server](https://discord.gg/WxGZwXqYuW) | cat 
+[community server](https://discord.gg/WxGZwXqYuW)
