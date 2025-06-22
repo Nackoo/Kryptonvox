@@ -82,7 +82,7 @@ container.appendChild(info);
 
 const ver = document.createElement('div');
 ver.innerHTML = 'krypton';
-ver.title = 'version 28 march 2025';
+ver.title = 'version 22 june 2025';
 ver.style.fontSize = '14px';
 ver.style.position = 'absolute';
 ver.style.right = '8px';
@@ -812,6 +812,105 @@ function initializeScript() {
 
 initializeScript();
 
+const hrr11 = document.createElement('hr');
+hrr11.style.border = '1px solid gray';
+hrr11.style.marginTop = '11px';
+hrr11.style.marginBottom = '10px';
+container.appendChild(hrr11);
+
+const mentionwrapper = document.createElement('div');
+mentionwrapper.style.display = 'flex';
+mentionwrapper.style.alignItems = 'center';
+
+const checkboxx = document.createElement('input');
+checkboxx.type = 'checkbox';
+checkboxx.id = 'mention-check';
+checkboxx.checked = localStorage.getItem('mentionCheck') === 'true';
+
+const labelx = document.createElement('label');
+labelx.htmlFor = 'mention-check';
+labelx.innerText = 'mention detector';
+labelx.style.fontSize = "14px";
+labelx.style.marginLeft = "10px";
+
+const input = document.createElement('input');
+input.type = 'text';
+input.placeholder = 'mention trigger';
+input.id = 'mention-input';
+input.style.marginTop = "10px";
+input.style.padding = "3px 5px 3px 5px";
+input.style.background = "#3c3c3c";
+input.style.border = "none";
+input.style.color = "#ddd";
+input.value = localStorage.getItem('mentionValue') || '';
+
+mentionwrapper.appendChild(checkboxx);
+mentionwrapper.appendChild(labelx);
+container.appendChild(mentionwrapper);
+container.appendChild(input);
+
+checkboxx.addEventListener('change', () => {
+  localStorage.setItem('mentionCheck', checkboxx.checked);
+  input.style.display = checkboxx.checked ? 'inline-block' : 'none';
+});
+input.addEventListener('input', () => {
+  localStorage.setItem('mentionValue', input.value.trim());
+});
+input.style.display = checkboxx.checked ? 'inline-block' : 'none';
+
+function showPopup(name) {
+  const popup = document.createElement('div');
+  popup.innerHTML = `<svg style="color:#faa61a;margin-bottom:-7px;" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M11.209 3.816a1 1 0 0 0-1.966.368l.325 1.74a5.338 5.338 0 0 0-2.8 5.762l.276 1.473.055.296c.258 1.374-.228 2.262-.63 2.998-.285.52-.527.964-.437 1.449.11.586.22 1.173.75 1.074l12.7-2.377c.528-.1.418-.685.308-1.27-.103-.564-.636-1.123-1.195-1.711-.606-.636-1.243-1.306-1.404-2.051-.233-1.085-.275-1.387-.303-1.587-.009-.063-.016-.117-.028-.182a5.338 5.338 0 0 0-5.353-4.39l-.298-1.592Z"/><path fill-rule="evenodd" d="M6.539 4.278a1 1 0 0 1 .07 1.412c-1.115 1.23-1.705 2.605-1.83 4.26a1 1 0 0 1-1.995-.15c.16-2.099.929-3.893 2.342-5.453a1 1 0 0 1 1.413-.069Z" clip-rule="evenodd"/><path d="M8.95 19.7c.7.8 1.7 1.3 2.8 1.3 1.6 0 2.9-1.1 3.3-2.5l-6.1 1.2Z"/></svg><span style="color:#04ff6c;">${name}</span> mentioned you`;
+  popup.style.position = 'fixed';
+  popup.style.bottom = '10px';
+  popup.style.right = '10px';
+  popup.style.background = '#0d1117';
+  popup.style.color = '#ddd';
+  popup.style.padding = '10px';
+  popup.style.paddingBottom = "15px";
+  popup.style.borderRadius = '10px';
+  popup.style.boxShadow = '0 2px 10px rgba(0,0,0,0.4)';
+  popup.style.border = "2px solid grey";
+  popup.style.zIndex = '9999';
+  popup.style.transition = 'opacity 0.5s ease';
+  popup.style.opacity = '1';
+  document.body.appendChild(popup);
+
+  setTimeout(() => {
+    popup.style.opacity = '0';
+    setTimeout(() => popup.remove(), 500);
+  }, 3000);
+}
+
+const observerx = new MutationObserver(() => {
+  if (!checkboxx.checked) return;
+  const targetValue = localStorage.getItem('mentionValue')?.trim();
+  if (!targetValue) return;
+
+  const items = document.querySelectorAll('.sc-wkwDy.gTfPhn');
+  items.forEach(item => {
+    const mentionSpan = item.querySelector('span:last-child');
+    if (mentionSpan && mentionSpan.textContent.includes(targetValue)) {
+      if (!item.classList.contains('highlighted')) {
+        item.classList.add('highlighted');
+        item.style.background = 'rgba(255,204,77,0.2)';
+        item.style.marginTop = "5px";
+        item.style.marginBottom = "5px";
+
+        const nameSpan = item.querySelector('span:first-child');
+        const name = nameSpan ? nameSpan.textContent.trim() : 'Someone';
+
+        showPopup(name);
+      }
+    }
+  });
+});
+
+observerx.observe(document.body, {
+  childList: true,
+  subtree: true
+});
+
 const resetEverythingButton = document.createElement('button');
 resetEverythingButton.textContent = 'restore defaults';
 resetEverythingButton.style.padding = '3px';
@@ -848,6 +947,12 @@ resetEverythingButton.addEventListener('click', function () {
 		localStorage.removeItem('crosshairEnabled');
 		localStorage.removeItem('crosshairUrl');
 		localStorage.removeItem('crosshairSize');
+		
+		checkboxx.checked = false;
+		input.value = '';
+		localStorage.setItem('mentionCheck', 'false');
+		localStorage.setItem('mentionValue', '');
+		input.style.display = 'none';
 
 		trcheckbox.checked = false;
 		localStorage.setItem('scriptEnabled', 'false');
