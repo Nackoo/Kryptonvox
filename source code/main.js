@@ -860,7 +860,7 @@ function createInput(value = '') {
   inputx.style.padding = "3px 5px";
   inputx.style.background = "#3c3c3c";
   inputx.style.border = "none";
-  inputx.style.color = "#ddd";
+  inputx.style.color = "white";
   inputx.style.flex = "1";
 
   const plusBtn = document.createElement('button');
