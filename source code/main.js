@@ -833,35 +833,93 @@ labelx.innerText = 'mention detector';
 labelx.style.fontSize = "14px";
 labelx.style.marginLeft = "10px";
 
-const input = document.createElement('input');
-input.type = 'text';
-input.placeholder = 'mention trigger';
-input.id = 'mention-input';
-input.style.marginTop = "10px";
-input.style.padding = "3px 5px 3px 5px";
-input.style.background = "#3c3c3c";
-input.style.border = "none";
-input.style.color = "#ddd";
-input.value = localStorage.getItem('mentionValue') || '';
-
 mentionwrapper.appendChild(checkboxx);
 mentionwrapper.appendChild(labelx);
 container.appendChild(mentionwrapper);
-container.appendChild(input);
+
+const inputList = document.createElement('div');
+inputList.style.display = 'flex';
+inputList.style.flexDirection = 'column';
+inputList.style.gap = '6px';
+inputList.style.marginTop = '10px';
+container.appendChild(inputList);
+
+document.body.appendChild(container);
+
+let mentionValues = JSON.parse(localStorage.getItem('mentionValues') || '[]');
+if (mentionValues.length === 0) mentionValues.push('');
+function createInput(value = '') {
+  const inputWrapper = document.createElement('div');
+  inputWrapper.style.display = 'flex';
+  inputWrapper.style.alignItems = 'center';
+
+  const inputx = document.createElement('input');
+  inputx.type = 'text';
+  inputx.placeholder = 'mention trigger';
+  inputx.value = value;
+  inputx.style.padding = "3px 5px";
+  inputx.style.background = "#3c3c3c";
+  inputx.style.border = "none";
+  inputx.style.color = "#ddd";
+  inputx.style.flex = "1";
+
+  const plusBtn = document.createElement('button');
+  plusBtn.innerHTML = '+';
+  plusBtn.style.background = '#3c3c3c';
+  plusBtn.style.border = 'none';
+  plusBtn.style.color = "white";
+  plusBtn.style.cursor = 'pointer';
+  plusBtn.style.width = '24px';
+  plusBtn.style.fontSize = "17px";
+  plusBtn.style.height = '24px';
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.innerHTML = '<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/></svg>️';
+  deleteBtn.title = 'Delete this trigger';
+  deleteBtn.style.background = '#3c3c3c';
+  deleteBtn.style.color = '#f55';
+  deleteBtn.style.border = 'none';
+  deleteBtn.style.cursor = 'pointer';
+  deleteBtn.style.width = '24px';
+  deleteBtn.style.height = '24px';
+
+  plusBtn.onclick = () => {
+    createInput('');
+    saveInputs();
+  };
+
+  deleteBtn.onclick = () => {
+    if (inputList.children.length <= 1) return;
+    inputWrapper.remove();
+    saveInputs();
+  };
+
+  inputx.addEventListener('inputx', saveInputs);
+
+  inputWrapper.appendChild(deleteBtn);
+  inputWrapper.appendChild(inputx);
+  inputWrapper.appendChild(plusBtn);
+  inputList.appendChild(inputWrapper);
+}
+
+function saveInputs() {
+  const allInputs = inputList.querySelectorAll('input');
+  const values = Array.from(allInputs).map(i => i.value.trim()).filter(v => v);
+  localStorage.setItem('mentionValues', JSON.stringify(values));
+}
+
+mentionValues.forEach(v => createInput(v));
 
 checkboxx.addEventListener('change', () => {
   localStorage.setItem('mentionCheck', checkboxx.checked);
-  input.style.display = checkboxx.checked ? 'inline-block' : 'none';
+  inputList.style.display = checkboxx.checked ? 'flex' : 'none';
 });
-input.addEventListener('input', () => {
-  localStorage.setItem('mentionValue', input.value.trim());
-});
-input.style.display = checkboxx.checked ? 'inline-block' : 'none';
+inputList.style.display = checkboxx.checked ? 'flex' : 'none';
 
 function showPopup(name) {
-	const mentionAudio = new Audio('https://kryptonvox.netlify.app/notification.mp3');
-	 mentionAudio.play();
-	 
+  const mentionAudio = new Audio('https://kryptonvox.netlify.app/notification.mp3');
+  mentionAudio.play();
+
   const popup = document.createElement('div');
   popup.innerHTML = `<svg style="color:#faa61a;margin-bottom:-7px;margin-right:3px;" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M11.209 3.816a1 1 0 0 0-1.966.368l.325 1.74a5.338 5.338 0 0 0-2.8 5.762l.276 1.473.055.296c.258 1.374-.228 2.262-.63 2.998-.285.52-.527.964-.437 1.449.11.586.22 1.173.75 1.074l12.7-2.377c.528-.1.418-.685.308-1.27-.103-.564-.636-1.123-1.195-1.711-.606-.636-1.243-1.306-1.404-2.051-.233-1.085-.275-1.387-.303-1.587-.009-.063-.016-.117-.028-.182a5.338 5.338 0 0 0-5.353-4.39l-.298-1.592Z"/><path fill-rule="evenodd" d="M6.539 4.278a1 1 0 0 1 .07 1.412c-1.115 1.23-1.705 2.605-1.83 4.26a1 1 0 0 1-1.995-.15c.16-2.099.929-3.893 2.342-5.453a1 1 0 0 1 1.413-.069Z" clip-rule="evenodd"/><path d="M8.95 19.7c.7.8 1.7 1.3 2.8 1.3 1.6 0 2.9-1.1 3.3-2.5l-6.1 1.2Z"/></svg><span style="color:#04ff6c;">${name}</span> mentioned you`;
   popup.style.position = 'fixed';
@@ -887,8 +945,8 @@ function showPopup(name) {
 
 const observerx = new MutationObserver(() => {
   if (!checkboxx.checked) return;
-  const targetValue = localStorage.getItem('mentionValue')?.trim();
-  if (!targetValue) return;
+  const mentionValues = JSON.parse(localStorage.getItem('mentionValues') || '[]');
+  if (mentionValues.length === 0) return;
 
   const items = document.querySelectorAll('.sc-wkwDy.gTfPhn');
   items.forEach(item => {
@@ -896,11 +954,10 @@ const observerx = new MutationObserver(() => {
     if (spans.length < 4) return;
 
     const mentionSpan = item.querySelector('span:last-child');
-    if (
-      mentionSpan &&
-      mentionSpan.textContent.toLowerCase().includes(targetValue.toLowerCase())
-    ) {
-      if (!item.classList.contains('highlighted')) {
+    if (mentionSpan) {
+      const content = mentionSpan.textContent.toLowerCase();
+      const match = mentionValues.find(val => content.includes(val.toLowerCase()));
+      if (match && !item.classList.contains('highlighted')) {
         item.classList.add('highlighted');
         item.style.background = 'rgba(255,204,77,0.2)';
         item.style.marginTop = "5px";
@@ -908,7 +965,6 @@ const observerx = new MutationObserver(() => {
 
         const nameSpan = item.querySelector('span:first-child');
         const name = nameSpan ? nameSpan.textContent.trim() : 'Someone';
-
         showPopup(name);
       }
     }
@@ -958,10 +1014,14 @@ resetEverythingButton.addEventListener('click', function () {
 		localStorage.removeItem('crosshairSize');
 		
 		checkboxx.checked = false;
-	  input.value = '';
 		localStorage.setItem('mentionCheck', 'false');
-		localStorage.setItem('mentionValue', '');
-		input.style.display = 'none';
+		localStorage.setItem('mentionValues', '');
+		
+		const inputx = document.querySelector('input');
+		if (inputx) {
+			inputx.value = '';
+			inputx.style.display = 'none';
+		}
 
 		trcheckbox.checked = false;
 		localStorage.setItem('scriptEnabled', 'false');
