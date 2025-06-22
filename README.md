@@ -10,11 +10,12 @@ custom made client for a better voxiom.<br>
   - better built-in css
   - custom css loader
 - translator
-  - chat auto-translate (limited usage)
-  - chat translator
+  - translate other people's chat to english (limited usage)
+  - translate my message into other languages before sending it
 - custom client keybinding 
 - focus mode 
 - custom crosshair
+- mention detector
 
 ## installation
 - Install [user JavaScript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en) extension or other javascript injector.
@@ -26,6 +27,6 @@ custom made client for a better voxiom.<br>
 - Nackoo
 - Wilda
 - Itex
-- Jiwdqhwdb
+- Jiwdqhwdb 🏆
 
 [community server](https://discord.gg/WxGZwXqYuW)
