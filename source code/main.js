@@ -334,9 +334,7 @@ const updateSettings = () => {
 
 	localStorage.setItem('crosshairSize', crosshairSize);
 	localStorage.setItem('crosshairEnabled', enableCheckbox.checked);
-	if (crosshairUrl) {
-		localStorage.setItem('crosshairUrl', crosshairUrl);
-	}
+	localStorage.setItem('crosshairUrl', crosshairUrl);
 	updateCrosshair();
 };
 
