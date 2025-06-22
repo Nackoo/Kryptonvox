@@ -892,8 +892,13 @@ const observerx = new MutationObserver(() => {
 
   const items = document.querySelectorAll('.sc-wkwDy.gTfPhn');
   items.forEach(item => {
+    const spans = item.querySelectorAll('span');
+    if (spans.length < 4) return;
+
     const mentionSpan = item.querySelector('span:last-child');
-    if ( mentionSpan && mentionSpan.textContent.toLowerCase().includes(targetValue.toLowerCase())
+    if (
+      mentionSpan &&
+      mentionSpan.textContent.toLowerCase().includes(targetValue.toLowerCase())
     ) {
       if (!item.classList.contains('highlighted')) {
         item.classList.add('highlighted');
