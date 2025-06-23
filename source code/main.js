@@ -279,7 +279,7 @@ const crosshairUrlInput = document.createElement('input');
 crosshairUrlInput.type = 'text';
 crosshairUrlInput.placeholder = 'Enter URL';
 crosshairUrlInput.style.marginTop = '2px';
-crosshairUrlInput.style.width = '109px';
+crosshairUrlInput.style.width = '195px';
 crosshairUrlInput.style.marginRight = '9px';
 crosshairUrlInput.style.border = 'none';
 crosshairUrlInput.style.color = 'white';
@@ -288,13 +288,6 @@ crosshairUrlInput.style.padding = '2px';
 crosshairUrlInput.style.paddingLeft = '4px';
 crosshairUrlInput.style.paddingRight = '4px';
 chwrapwrap.appendChild(crosshairUrlInput);
-
-const sfileInput = document.createElement('input');
-sfileInput.type = 'file';
-sfileInput.accept = 'image/*';
-sfileInput.style.marginTop = '2px';
-sfileInput.style.width = '85px';
-chwrapwrap.appendChild(sfileInput);
 
 const sizeSliderWrapper = document.createElement('div');
 sizeSliderWrapper.style.display = 'flex';
@@ -348,18 +341,6 @@ crosshairUrlInput.addEventListener('input', () => {
 
 sizeSlider.addEventListener('input', () => {
 	updateSettings();
-});
-
-sfileInput.addEventListener('change', (event) => {
-	if (event.target.files && event.target.files[0]) {
-		const reader = new FileReader();
-		reader.onload = function (e) {
-			crosshairUrlInput.value = e.target.result;
-			localStorage.setItem('crosshairUrl', e.target.result);
-			updateSettings();
-		};
-		reader.readAsDataURL(event.target.files[0]);
-	}
 });
 
 window.addEventListener('load', () => {
