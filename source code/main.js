@@ -82,7 +82,7 @@ container.appendChild(info);
 
 const ver = document.createElement('div');
 ver.innerHTML = 'krypton';
-ver.title = 'version 22 june 2025';
+ver.title = 'version 23 june 2025';
 ver.style.fontSize = '14px';
 ver.style.position = 'absolute';
 ver.style.right = '8px';
