@@ -352,26 +352,6 @@ window.addEventListener('load', () => {
 	updateCrosshair();
 });
 
-function replaceCuteEmoji() {
-    document.querySelectorAll('.sc-wkwDy.gTfPhn > span:last-child').forEach(span => {
-        let content = span.innerHTML.trim();
-
-        if (content === ": :cute:") {
-            span.innerHTML = `: <img style="margin-bottom:-5px;height:35px;width:auto;" src="https://i.imgur.com/brZJSAn.png">`;
-        } else if (content.includes(":cute:")) {
-            span.innerHTML = content.replace(/:cute:/g, `<img src="https://i.imgur.com/brZJSAn.png" style="height:20px;width:auto;margin-bottom:-5px;">`);
-        }
-    });
-}
-
-replaceCuteEmoji();
-
-const observer = new MutationObserver(() => {
-    replaceCuteEmoji(); 
-});
-
-observer.observe(document.body, { childList: true, subtree: true });
-
 function mainFunction() {
 	function injectScript(code) {
 		let script = document.createElement('script');
