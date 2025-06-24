@@ -53,12 +53,10 @@ function createEmojiInstructions() {
     `;
     document.body.appendChild(a);
     
-    // Default to true if not set
     if (localStorage.getItem('emojiInstructionsVisible') === null) {
         localStorage.setItem('emojiInstructionsVisible', 'true');
     }
-
-    // Now show or hide based on the value
+    
     const displayState = localStorage.getItem('emojiInstructionsVisible') === 'true';
     a.style.display = displayState ? 'block' : 'none';
 }
