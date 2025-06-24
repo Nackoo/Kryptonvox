@@ -25,25 +25,40 @@ function createEmojiInstructions() {
       line-height: 2;
       display: block;
     }
+    #s {
+    	height:20px; 
+    	width:auto; 
+    	margin-bottom:-5px;
+    }
     </style>
     
-Ctrl + Q) emoji list:<br>
-    <m>:1:</m> Cute <img src="https://i.imgur.com/brZJSAn.png" style="height:20px; width:auto; margin-bottom:-5px;"><br>
-    <m>:2:</m> Freaky Stare <img src="https://i.imgur.com/qoIoug8.png" style="height:20px; width:auto; margin-bottom:-5px;"><br>
-    <m>:3:</m> Face Hearts <img src="https://i.imgur.com/FuEcXz6.png" style="height:20px; width:auto; margin-bottom:-5px;"><br>
-    <m>:4:</m> Sad <img src="https://i.imgur.com/v3sPlIT.png" style="height:20px; width:auto; margin-bottom:-5px;"><br>
-    <m>:5:</m> Disappointed Cry <img src="https://i.imgur.com/FZahPU7.png" style="height:20px; width:auto; margin-bottom:-5px;"><br>
-    <m>:6:</m> Biting Lips <img src="https://i.imgur.com/hoFxCIE.png" style="height:20px; width:auto; margin-bottom:-5px;"><br>
-    <m>:7:</m> What the Hell <img src="https://i.imgur.com/jb9VzQD.gif" style="height:20px; width:auto; margin-bottom:-5px;"><br>
-    <m>:8:</m> Squirrel Hammer <img src="https://i.imgur.com/AkrJcv7.png" style="height:20px; width:auto; margin-bottom:-5px;"><br>
-    <m>:9:</m> Annoyed <img src="https://i.imgur.com/AfnJTcz.png" style="height:20px; width:auto; margin-bottom:-5px;"><br>
-    <m>:10:</m> Woah Face <img src="https://i.imgur.com/ENk7IzR.png" style="height:20px; width:auto; margin-bottom:-5px;"><br>
-    <m>:11:</m> Silly Laugh <img src="https://i.imgur.com/ZgZuQJL.png" style="height:20px; width:auto; margin-bottom:-5px;"><br>
-    <m>:12:</m> Kiss <img src="https://i.imgur.com/bWoL9im.png" style="height:20px; width:auto; margin-bottom:-5px;"><br>
-    <m>:13:</m> Blush <img src="https://i.imgur.com/d81B1dw.png" style="height:20px; width:auto; margin-bottom:-5px;">
+(Ctrl + Q) emoji list:<br>
+    <m>:1:</m> Cute <img id="s" src="https://i.imgur.com/brZJSAn.png"><br>
+    <m>:2:</m> Freaky Stare <img id="s" src="https://i.imgur.com/qoIoug8.png"><br>
+    <m>:3:</m> Face Hearts <img id="s" src="https://i.imgur.com/FuEcXz6.png"><br>
+    <m>:4:</m> Sad <img id="s" src="https://i.imgur.com/v3sPlIT.png"><br>
+    <m>:5:</m> Disappointed Cry <img id="s" src="https://i.imgur.com/FZahPU7.png"><br>
+    <m>:6:</m> Biting Lips <img id="s" src="https://i.imgur.com/hoFxCIE.png"><br>
+    <m>:7:</m> What the Hell <img id="s" src="https://i.imgur.com/jb9VzQD.gif"><br>
+    <m>:8:</m> Squirrel Hammer <img id="s" src="https://i.imgur.com/AkrJcv7.png"><br>
+    <m>:9:</m> Annoyed <img id="s" src="https://i.imgur.com/AfnJTcz.png"><br>
+    <m>:10:</m> Woah Face <img id="s" src="https://i.imgur.com/ENk7IzR.png"><br>
+    <m>:11:</m> Silly Laugh <img id="s" src="https://i.imgur.com/ZgZuQJL.png"><br>
+    <m>:12:</m> Kiss <img id="s" src="https://i.imgur.com/bWoL9im.png"><br>
+    <m>:13:</m> Blush <img id="s" src="https://i.imgur.com/d81B1dw.png"><br>
+    <m>:14:</m> Friendly Finger <img id="s" src="https://i.imgur.com/PI9YMRE.png"><br>
+    <m>:15:</m> Skull <img id="s" src="https://i.imgur.com/cs9qdkn.png"><br>
+    <m>:16:</m> Moyai <img id="s" src="https://i.imgur.com/2mg8Pyz.png"><br>
+    <m>:17:</m> wut <img id="s" src="https://i.imgur.com/nWFHYAq.png">
     `;
     document.body.appendChild(a);
     
+    // Default to true if not set
+    if (localStorage.getItem('emojiInstructionsVisible') === null) {
+        localStorage.setItem('emojiInstructionsVisible', 'true');
+    }
+
+    // Now show or hide based on the value
     const displayState = localStorage.getItem('emojiInstructionsVisible') === 'true';
     a.style.display = displayState ? 'block' : 'none';
 }
@@ -76,6 +91,10 @@ function replaceCustomEmojis() {
         ":11:": "https://i.imgur.com/ZgZuQJL.png", //silli laugh
         ":12:": "https://i.imgur.com/bWoL9im.png", //kiss
         ":13:": "https://i.imgur.com/d81B1dw.png", //blush
+        ":14:": "https://i.imgur.com/PI9YMRE.png", //friendly finger
+        ":15:": "https://i.imgur.com/cs9qdkn.png", //skull 
+        ":16:": "https://i.imgur.com/2mg8Pyz.png", //moyai
+        ":17:": "https://i.imgur.com/nWFHYAq.png", //wut
     };
 
     document.querySelectorAll('.sc-wkwDy.gTfPhn > span:last-child').forEach(span => {
@@ -103,8 +122,8 @@ function replaceCustomEmojis() {
 
 replaceCustomEmojis();
 
-const observer = new MutationObserver(() => {
+const emojiObserver = new MutationObserver(() => {
     replaceCustomEmojis(); 
 });
 
-observer.observe(document.body, { childList: true, subtree: true });
+emojiObserver.observe(document.body, { childList: true, subtree: true });
