@@ -907,3 +907,7 @@ border: var(--border);
 .sc-hUplSX:nth-child(11) {
   margin-bottom: 10px;
 }
+
+.sc-iBjLOp > div:nth-child(2) {
+	margin-top: 5px;
+}
