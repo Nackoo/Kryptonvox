@@ -803,10 +803,15 @@ inputList.style.gap = '6px';
 inputList.style.marginTop = '10px';
 container.appendChild(inputList);
 
-document.body.appendChild(container);
-
-let mentionValues = JSON.parse(localStorage.getItem('mentionValues') || '[]');
+let mentionValues;
+try {
+  const raw = JSON.parse(localStorage.getItem('mentionValues'));
+  mentionValues = Array.isArray(raw) ? raw : [];
+} catch (e) {
+  mentionValues = [];
+}
 if (mentionValues.length === 0) mentionValues.push('');
+
 function createInput(value = '') {
   const inputWrapper = document.createElement('div');
   inputWrapper.style.display = 'flex';
@@ -833,7 +838,7 @@ function createInput(value = '') {
   plusBtn.style.height = '24px';
 
   const deleteBtn = document.createElement('button');
-  deleteBtn.innerHTML = '<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/></svg>️';
+  deleteBtn.innerHTML = '<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/></svg>';
   deleteBtn.title = 'Delete this trigger';
   deleteBtn.style.background = '#3c3c3c';
   deleteBtn.style.color = '#f55';
@@ -853,7 +858,7 @@ function createInput(value = '') {
     saveInputs();
   };
 
-  inputx.addEventListener('inputx', saveInputs);
+  inputx.addEventListener('input', saveInputs);
 
   inputWrapper.appendChild(deleteBtn);
   inputWrapper.appendChild(inputx);
@@ -863,7 +868,9 @@ function createInput(value = '') {
 
 function saveInputs() {
   const allInputs = inputList.querySelectorAll('input');
-  const values = Array.from(allInputs).map(i => i.value.trim()).filter(v => v);
+  const values = Array.from(allInputs)
+    .map(i => i.value.trim())
+    .filter(v => v.length > 1);
   localStorage.setItem('mentionValues', JSON.stringify(values));
 }
 
@@ -902,21 +909,32 @@ function showPopup(name) {
   }, 3000);
 }
 
+const notifiedMessages = new WeakSet();
+
 const observerx = new MutationObserver(() => {
   if (!checkboxx.checked) return;
-  const mentionValues = JSON.parse(localStorage.getItem('mentionValues') || '[]');
+  let mentionValues;
+  try {
+    const raw = JSON.parse(localStorage.getItem('mentionValues'));
+    mentionValues = Array.isArray(raw) ? raw : [];
+  } catch {
+    mentionValues = [];
+  }
   if (mentionValues.length === 0) return;
 
   const items = document.querySelectorAll('.sc-wkwDy.gTfPhn');
   items.forEach(item => {
+    if (notifiedMessages.has(item)) return;
+
     const spans = item.querySelectorAll('span');
     if (spans.length < 4) return;
 
     const mentionSpan = item.querySelector('span:last-child');
     if (mentionSpan) {
       const content = mentionSpan.textContent.toLowerCase();
-      const match = mentionValues.find(val => content.includes(val.toLowerCase()));
-      if (match && !item.classList.contains('highlighted')) {
+      const match = mentionValues.find(val => val.toLowerCase() && content.includes(val.toLowerCase()));
+      if (match) {
+        notifiedMessages.add(item); 
         item.classList.add('highlighted');
         item.style.background = 'rgba(255,204,77,0.2)';
         item.style.marginTop = "5px";
