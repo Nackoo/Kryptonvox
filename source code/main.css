@@ -203,7 +203,8 @@ div[id^="voxiom-io"] { /* blocks ad */
 .sc-hgksCU,
 .sc-cyAtEZ,
 .sc-kQoPux.cZlSHS,
-.sc-OVzLa {
+.sc-OVzLa,
+.sc-ojmzf.hGmYbd {
 	border-radius: 10px;
 }
 
@@ -225,6 +226,10 @@ div[id^="voxiom-io"] { /* blocks ad */
 
 .sc-bhiFeW.dBIePB[style*="background-color: rgb(46, 204, 113)"] {
   background: #577492 !important;
+}
+
+.sc-gloWDX {
+	border-radius: 5px;
 }
 
 /********** home **********/
@@ -767,7 +772,7 @@ select:nth-child(1),
 
 .sc-bcuSnp {
 	border-radius: 10px;
-border: var(--border);
+  border: var(--border);
   background: var(--dark);
   margin-bottom: 50px;
 }
@@ -793,9 +798,9 @@ border: var(--border);
 
 .sc-lbJDnc,
 .sc-gnYOKe {
- border-radius: 5px;
+  border-radius: 5px;
   background: var(--normal);
-border: var(--border);
+  border: var(--border);
 }
 
 .sc-gnYOKe {
@@ -803,7 +808,7 @@ border: var(--border);
 }
 
 .sc-lheXJl {
-border: var(--border);
+  border: var(--border);
   border-radius: 5px;
   background: var(--light);
   margin-bottom: 15px;
@@ -812,7 +817,7 @@ border: var(--border);
 .sc-dlUKyu > .sc-eIMkDA,
 .sc-csnXpH > .sc-eIMkDA,
 .sc-eIMkDA {
-border: var(--border);
+  border: var(--border);
   background: var(--normal);
   border-radius: 10px;
   margin-bottom: 5px;
@@ -823,7 +828,7 @@ border: var(--border);
 .sc-eGAbHy {
 	background: var(--dark);
   border-radius: 10px;
-border: var(--border);
+  border: var(--border);
 }
 
 .sc-dlUKyu .sc-gulkZw,
@@ -832,7 +837,11 @@ border: var(--border);
 .sc-cAerGf {
 	background: var(--dark);
   border-radius: 5px;
-border: var(--border);
+  border: var(--border);
+}
+
+.sc-lbJDnc:nth-child(2) {
+  margin-top: 25px  !important;
 }
 
 /********** friends **********/
