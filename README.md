@@ -10,11 +10,12 @@ custom made client for a better voxiom.<br>
   - better built-in css
   - custom css loader
 - translator
-  - translate other people's chat to english (limited usage)
-  - translate my message into other languages before sending it
-- custom client keybinding 
-- focus mode 
+  - translates other people's chat to english (limited usage)
+  - translates your message into supported languages before sending it
+- custom keybinding for client purposes
+- focus mode (hides unnecessary elements to maintain focus while playing)
 - custom crosshair
+  - custom crosshair size
 - mention detector
 
 ## installation
@@ -23,7 +24,7 @@ custom made client for a better voxiom.<br>
 - Paste the script into the editor.
 - Click Save and refresh voxiom page.
 
-## credit
+## credits
 - Nackoo
 - Wilda
 - Itex
