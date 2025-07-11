@@ -185,9 +185,9 @@ container.appendChild(hrr1);
 function toggleFocusMode(isChecked) {
 	localStorage.setItem('useFocusMode', isChecked ? 'true' : 'false');
 
-	const elementsToModify = document.querySelectorAll(
-		'.cxSTIe, .ekCLHU, .eFhDSk, .lpfJAq *, .lpdfTz *, .sc-kqnjJL'
-	);
+const elementsToModify = document.querySelectorAll(
+  'table.sc-fKknU.dbJyuA, .sc-erFXsz.cxSTIe, .sc-eoHXOn.lpdfTz'
+);
 
 	elementsToModify.forEach((element) => {
 		element.style.setProperty(
@@ -887,14 +887,13 @@ function showPopup(name, item) {
   mentionAudio.play();
 
   const popup = document.createElement('div');
-  popup.innerHTML = `<svg style="color:#faa61a;margin-bottom:-7px;margin-right:3px;" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M11.209 3.816a1 1 0 0 0-1.966.368l.325 1.74a5.338 5.338 0 0 0-2.8 5.762l.276 1.473.055.296c.258 1.374-.228 2.262-.63 2.998-.285.52-.527.964-.437 1.449.11.586.22 1.173.75 1.074l12.7-2.377c.528-.1.418-.685.308-1.27-.103-.564-.636-1.123-1.195-1.711-.606-.636-1.243-1.306-1.404-2.051-.233-1.085-.275-1.387-.303-1.587-.009-.063-.016-.117-.028-.182a5.338 5.338 0 0 0-5.353-4.39l-.298-1.592Z"/></svg><span style="color:#04ff6c;">${name}</span> mentioned you`;
+  popup.innerHTML = `<svg style="color:#faa61a;margin-bottom:-7px;margin-right:3px;" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M11.209 3.816a1 1 0 0 0-1.966.368l.325 1.74a5.338 5.338 0 0 0-2.8 5.762l.276 1.473.055.296c.258 1.374-.228 2.262-.63 2.998-.285.52-.527.964-.437 1.449.11.586.22 1.173.75 1.074l12.7-2.377c.528-.1.418-.685.308-1.27-.103-.564-.636-1.123-1.195-1.711-.606-.636-1.243-1.306-1.404-2.051-.233-1.085-.275-1.387-.303-1.587-.009-.063-.016-.117-.028-.182a5.338 5.338 0 0 0-5.353-4.39l-.298-1.592Z"/><path fill-rule="evenodd" d="M6.539 4.278a1 1 0 0 1 .07 1.412c-1.115 1.23-1.705 2.605-1.83 4.26a1 1 0 0 1-1.995-.15c.16-2.099.929-3.893 2.342-5.453a1 1 0 0 1 1.413-.069Z" clip-rule="evenodd"/><path d="M8.95 19.7c.7.8 1.7 1.3 2.8 1.3 1.6 0 2.9-1.1 3.3-2.5l-6.1 1.2Z"/></svg><span style="color:#04ff6c;">${name}</span> mentioned you`;
   popup.style.position = 'fixed';
   popup.style.bottom = '10px';
   popup.style.right = '10px';
   popup.style.background = '#0d1117';
   popup.style.color = '#ddd';
   popup.style.padding = '10px 15px';
-  popup.style.borderRadius = '10px';
   popup.style.boxShadow = '0 2px 10px rgba(0,0,0,0.4)';
   popup.style.border = "2px solid grey";
   popup.style.zIndex = '9999';
@@ -913,10 +912,7 @@ function showPopup(name, item) {
   }, 3000);
 }
 
-const notifiedMessages = new WeakSet();
-let globalCheckedCount = 0;
-
-const observerx = new MutationObserver(mutations => {
+const observerx = new MutationObserver(() => {
   if (!checkboxx.checked) return;
 
   let mentionValues;
@@ -927,57 +923,51 @@ const observerx = new MutationObserver(mutations => {
     mentionValues = [];
   }
   if (mentionValues.length === 0) return;
-  let thisRunCount = 0;
 
-  mutations.forEach(mutation => {
-    mutation.addedNodes.forEach(node => {
-      if (!(node instanceof HTMLElement)) return;
+  const items = Array.from(document.querySelectorAll('.sc-wkwDy.gTfPhn'));
+  const lastItem = items[items.length - 1]; 
 
-      const targets = node.matches('.sc-wkwDy.gTfPhn')
-        ? [node]
-        : Array.from(node.querySelectorAll('.sc-wkwDy.gTfPhn'));
+  items.forEach(item => {
+    const spans = item.querySelectorAll('span');
+    if (spans.length < 4) return;
 
-      targets.forEach(item => {
-        if (item.dataset.mentionSeen === 'true') return;
+    const mentionSpan = item.querySelector('span:last-child');
+    if (!mentionSpan) return;
 
-        const spans = item.querySelectorAll('span');
-        if (spans.length < 4) return;
+    const content = mentionSpan.textContent.toLowerCase();
 
-        const mentionSpan = item.querySelector('span:last-child');
-        if (!mentionSpan) return;
+    const matched = mentionValues.some(val =>
+      val.toLowerCase() && content.includes(val.toLowerCase())
+    );
 
-        const content = mentionSpan.textContent.toLowerCase().trim();
-        if (!content || content === ':' || content.length < 2) return;
+    if (matched) {
+      item.classList.add('highlighted');
+      item.style.background = 'rgba(255,204,77,0.2)';
+      item.style.marginTop = "5px";
+      item.style.marginBottom = "5px";
 
-        globalCheckedCount++;
-        thisRunCount++;
+      const isLast = item === lastItem;
 
-        console.log(`%cChecking [${globalCheckedCount}]:`, 'color: orange;', `"${content}"`);
-
-        const match = mentionValues.find(val =>
-          val.toLowerCase() && content.includes(val.toLowerCase())
-        );
-
-        if (match) {
-          console.log(`%cMatched:`, 'color: green;', `"${match}" in "${content}"`);
-          item.dataset.mentionSeen = 'true';
-          item.classList.add('highlighted');
-          item.style.background = 'rgba(255,204,77,0.2)';
-          item.style.marginTop = "5px";
-          item.style.marginBottom = "5px";
-
-          const nameSpan = item.querySelector('span:first-child');
-          const name = nameSpan ? nameSpan.textContent.trim() : 'Someone';
-          showPopup(name, item);
-        }
-      });
-    });
+      if (isLast && !item.dataset.popupShown) {
+        const nameSpan = item.querySelector('span:first-child');
+        const name = nameSpan ? nameSpan.textContent.trim() : 'Someone';
+        showPopup(name, item);
+        item.dataset.popupShown = "true";
+      }
+    } else {
+      item.classList.remove('highlighted');
+      item.style.background = '';
+      item.style.marginTop = "";
+      item.style.marginBottom = "";
+      delete item.dataset.popupShown;
+    }
   });
 });
 
 observerx.observe(document.body, {
   childList: true,
-  subtree: true
+  subtree: true,
+  characterData: true
 });
 
 const resetEverythingButton = document.createElement('button');
