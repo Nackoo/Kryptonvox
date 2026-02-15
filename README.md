@@ -3,19 +3,23 @@
 custom made client for a better voxiom.<br>
 
 ## features
+- countdown (without necessarily typing 3,2,1 in the chat and getting rate-limited)
 - skin color changer
   - head color
   - body color
+- unique color for each username in the chat (this to make you read easier who's chatting)
 - styles
   - better built-in css
   - custom css loader
-- translator
-  - translates other people's chat to english (limited usage)
-  - translates your message into supported languages before sending it
-- custom keybinding for client purposes
 - focus mode (hides unnecessary elements to maintain focus while playing)
+- translator
+  - translates other people's chat from detected language (limited usage)
+  - language options detected language from chat should be translated to
+  - translates your message into supported languages before sending
+- emojis for fun (IMPORTANT: use it on private servers as this may count as spam for non-plugin users)
 - custom crosshair
   - custom crosshair size
+- custom keybinding for client purposes
 - mention detector
 
 ## installation
