@@ -40,7 +40,12 @@ const savedColors = {
 };
 
 const container = document.createElement('div');
-container.style.display = localStorage.getItem('isContainerHidden') === 'true' ? 'none' : 'flex';
+
+if (localStorage.getItem('isContainerHidden') === null) {
+	localStorage.setItem('isContainerHidden', 'true');
+}
+
+const isHidden = localStorage.getItem('isContainerHidden') === 'true';
 
 container.style.cssText = `
 	position: absolute;
@@ -48,12 +53,13 @@ container.style.cssText = `
 	right: 10px;
 	padding: 10px;
 	background: #141414;
+	display: ${isHidden ? 'none' : 'flex'};
 	flex-direction: column;
 	overflow: auto;
 	max-height: 555px;
 	border: 1px solid #55555;
 	font-family: cursive;
-	schrollbar-width: thin;
+	scrollbar-width: thin;
 	scrollbar-color: #888888 #333333;
 `;
 
