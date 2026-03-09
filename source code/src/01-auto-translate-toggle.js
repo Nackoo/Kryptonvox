@@ -199,6 +199,6 @@ container.appendChild(hrr10);
 
 trWrapper.appendChild(trCheckbox);
 trWrapper.appendChild(trLabel);
-container.appendChild(tRwrapper);
+container.appendChild(trWrapper);
 
 let isCountdownEnabled = false;
