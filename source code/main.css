@@ -13,7 +13,7 @@
 } 
  
 * {
-  font-family: font-family: "Comic Sans MS", "Comic Sans", cursive !important; /* font */
+  font-family: "Comic Sans MS", "Comic Sans", cursive !important; /* font */
   transition: background 0.2s ease;
   text-decoration: none !important;
 }
@@ -139,7 +139,7 @@ div[id^="voxiom-io"] { /* blocks ad */
 .dXMIIa,
 .bccMWL,
 .hPotyP,
-.bNPMhE * {
+.bNPMhE > * {
     border: none !important;
     background: none !important;
 }
@@ -151,13 +151,13 @@ div[id^="voxiom-io"] { /* blocks ad */
     margin-bottom: 10px;
 }
 
-.bNPMhE * {
+.bNPMhE > * {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.bNPMhE *::before {
+.bNPMhE > *::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -314,7 +314,10 @@ div[id^="voxiom-io"] { /* blocks ad */
   border: var(--border);
 }
 
-.active {
+.sc-llYSUQ.active,
+.sc-bxYNtK.active,
+.sc-inrDdN.active,
+.sc-kITQLZ.active {
   background: var(--light) !important;
 }
 
@@ -640,7 +643,8 @@ a.sc-kTLmzF.ezdBNE.active {
   border: var(--border);
 }
 
-select:nth-child(1) {
+.sc-jtXEFf select:nth-child(1),
+.sc-jWUzzU.fiVibt select:nth-child(1) {
   background: var(--dark);
   padding: 5px;
   color: #ddd;
@@ -676,7 +680,8 @@ select:nth-child(1) {
 
 .sc-bilyIR:nth-child(1) .sc-xiLah,
 .sc-bilyIR:nth-child(2) .sc-xiLah,
-select:nth-child(1),
+.sc-jtXEFf select:nth-child(1),
+.sc-jWUzzU.fiVibt select:nth-child(1),
 .sc-dFtzxp > .sc-gIDmLj,
 .sc-gIDmLj:nth-child(1),
 .sc-gIDmLj:nth-child(3),

@@ -28,6 +28,12 @@ custom made client for a better voxiom.<br>
 - Paste the script into the editor.
 - Click Save and refresh voxiom page.
 
+## development
+- Main runtime output: `source code/main.js`
+- Source modules: `source code/src/*.js`
+- Build command:
+  - `powershell -ExecutionPolicy Bypass -File "source code/scripts/build-main.ps1"`
+
 ## credits
 - Nackoo
 - Wilda
