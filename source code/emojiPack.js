@@ -103,8 +103,9 @@ function replaceCustomEmojis() {
         let newContent = content;
 
         Object.entries(emojiMap).forEach(([emoji, url]) => {
-            const emojiOnlyPattern = new RegExp(`^: ?${emoji}$`);
-            const inlinePattern = new RegExp(emoji.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+            const escapedEmoji = emoji.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const emojiOnlyPattern = new RegExp(`^\\s*${escapedEmoji}\\s*$`);
+            const inlinePattern = new RegExp(escapedEmoji, 'g');
 
             if (emojiOnlyPattern.test(content)) {
                 newContent = `: <img src="${url}" style="height:35px;width:auto;margin-bottom:-5px;">`;

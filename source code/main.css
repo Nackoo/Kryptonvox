@@ -1114,6 +1114,30 @@ a.sc-kTLmzF.ezdBNE.active {
   margin-top: 5px;
 }
 
+.hqKrdE.active{
+  cursor: pointer;
+  background: var(--accent-surface) !important;
+}
+
+.hqKrdE:hover{
+  cursor: pointer;
+  background: var(--hover-surface) !important;
+}
+
+.wYSNv:hover {
+  cursor: pointer;
+  background: var(--hover-surface) !important;
+}
+
+.wYSNv.active {
+  cursor: pointer;
+  background: var(--accent-surface) !important;
+}
+
+.wYSNv.nav-stats-item-active {
+  background: var(--accent-surface) !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

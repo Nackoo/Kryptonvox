@@ -17,6 +17,19 @@
                 "id": "indonesian", "th": "thai", "vi": "vietnamese", "hi": "hindi", "sv": "swedish", "tl": "tagalog"
             };
 
+            function escapeHtml(value) {
+                return String(value).replace(/[&<>"']/g, (ch) => {
+                    switch (ch) {
+                        case '&': return '&amp;';
+                        case '<': return '&lt;';
+                        case '>': return '&gt;';
+                        case '"': return '&quot;';
+                        case "'": return '&#39;';
+                        default: return ch;
+                    }
+                });
+            }
+
             const targetSelector = '.sc-wkwDy > span:last-child'; 
             let observer = new MutationObserver(mutations => {
                 if (localStorage.getItem('scriptEnabled') !== 'true') {
@@ -67,14 +80,14 @@
                         detectAndTranslate(text).then(result => {
                             if (result && result.translatedText) {
                                 let translatedText = result.translatedText;
-                                let detectedLang = languageNames[result.language] || "<span style='color:#e67e22'>unknown</span>";
+                                let detectedLang = languageNames[result.language] || "unknown";
                                 let parent = node.parentNode;
 
                                 if (!parent.innerHTML.includes(translatedText)) {
                                     parent.dataset.originalText = text;
-                                    parent.innerHTML = \`\${translatedText} <span style="color:#B0B0B0;">(\${detectedLang})</span>
-                                        <span class="view-original" style="color:#87CEFA; text-decoration:underline; cursor:pointer; font-size:0.9em; margin-left:0px;">view original</span>
-                                    \`;
+                                    parent.innerHTML = escapeHtml(translatedText) +
+                                        ' <span style="color:#B0B0B0;">(' + escapeHtml(detectedLang) + ')</span>' +
+                                        ' <span class="view-original" style="color:#87CEFA; text-decoration:underline; cursor:pointer; font-size:0.9em; margin-left:0px;">view original</span>';
                                     parent.dataset.translated = "true";
 
                                     let viewOriginal = parent.querySelector('.view-original');
@@ -89,7 +102,7 @@
             function toggleOriginalText(element, detectedLang) {
                 let isTranslated = element.dataset.translated === "true";
                 if (isTranslated) {
-                    element.innerHTML = element.dataset.originalText + 
+                    element.innerHTML = escapeHtml(element.dataset.originalText) +
                         ' <span class="translate-back" style="color:#87CEFA; text-decoration:underline; cursor:pointer; font-size:0.9em; margin-left:0px;">translate</span>';
                     element.dataset.translated = "false";
 
@@ -98,8 +111,9 @@
                         detectAndTranslate(element.dataset.originalText).then(result => {
                             if (result && result.translatedText) {
                                 let translatedText = result.translatedText;
-                                element.innerHTML = \`\${translatedText} <span style="color:#B0B0B0;">(\${detectedLang})</span>
-                                    <span class="view-original" style="color:#87CEFA; text-decoration:underline; cursor:pointer; font-size:0.9em; margin-left:0px;">view original</span>\`;
+                                element.innerHTML = escapeHtml(translatedText) +
+                                    ' <span style="color:#B0B0B0;">(' + escapeHtml(detectedLang) + ')</span>' +
+                                    ' <span class="view-original" style="color:#87CEFA; text-decoration:underline; cursor:pointer; font-size:0.9em; margin-left:0px;">view original</span>';
                                 element.dataset.translated = "true";
 
                                 let viewOriginal = element.querySelector('.view-original');
