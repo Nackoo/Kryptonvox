@@ -1555,7 +1555,7 @@ const defaultKeybinds = {
 		modifier: 'alt',
 	},
 	containerKeybind: {
-		key: 'z',
+		key: 'w',
 		modifier: 'alt',
 	},
 };
@@ -1648,7 +1648,7 @@ let focusKeybind = {
 	modifier: 'alt',
 };
 let containerKeybind = {
-	key: 'z',
+	key: 'w',
 	modifier: 'alt',
 };
 // --- END 03-mentions-and-reset.js ---
@@ -1741,9 +1741,10 @@ uiHintSpan.style.cssText = `
 `;
 
 function updateuilabel() {
-	const keybind = getStoredJSON('containerKeybind', {});
-	const key = keybind.key || 'z';
-	const modifier = keybind.modifier || 'alt';
+	const storedKeybind = getStoredJSON('containerKeybind', null);
+	const keybind = containerKeybind.key ? containerKeybind : storedKeybind || {};
+	const key = keybind.key || (storedKeybind?.key || 'w');
+	const modifier = keybind.modifier || (storedKeybind?.modifier || 'alt');
 	uiHintSpan.textContent = `${modifier} + ${key.toUpperCase()} to open UI`;
 }
 
@@ -2172,6 +2173,7 @@ function createKeybindForm() {
 function init() {
 	loadKeybinds();
 	updateLabels();
+	updateuilabel();
 	updateEventListeners();
 	createKeybindForm();
 }
