@@ -16,7 +16,7 @@ custom made client for a better voxiom.<br>
   - translates other people's chat from detected language (limited usage)
   - language options detected language from chat should be translated to
   - translates your message into supported languages before sending
-- emojis for fun (IMPORTANT: use it on private servers as this may count as spam for non-plugin users)
+- emojis for fun
 - custom crosshair
   - custom crosshair size
 - custom keybinding for client purposes
@@ -28,6 +28,12 @@ custom made client for a better voxiom.<br>
 - Paste the script into the editor.
 - Click Save and refresh voxiom page.
 
+## development
+- Main runtime output: `source code/main.js`
+- Source modules: `source code/src/*.js`
+- Build command:
+  - `powershell -ExecutionPolicy Bypass -File "SourceCode/scripts/build-main.ps1"`
+  - (run in repo root)
 ## credits
 - Nackoo
 - Wilda
