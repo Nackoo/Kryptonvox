@@ -1649,6 +1649,8 @@ let focusKeybind = {
 };
 let containerKeybind = {
 	key: 'w',
+	modifier: 'alt',
+};
 // --- END 03-mentions-and-reset.js ---
 
 // --- BEGIN 04-advanced-controls.js ---
