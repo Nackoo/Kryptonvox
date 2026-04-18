@@ -679,6 +679,15 @@ function initializeAutoTranslateScript() {
                 });
             }
 
+            function detectedLangMarkup(languageCode) {
+                const languageName = languageNames[languageCode];
+                if (!languageName) {
+                    return "<span style='color:#e67e22'>unknown</span>";
+                }
+
+                return escapeHtml(languageName);
+            }
+
             const targetSelector = '.sc-wkwDy > span:last-child'; 
             let observer = new MutationObserver(mutations => {
                 if (localStorage.getItem('scriptEnabled') !== 'true') {
@@ -729,18 +738,19 @@ function initializeAutoTranslateScript() {
                         detectAndTranslate(text).then(result => {
                             if (result && result.translatedText) {
                                 let translatedText = result.translatedText;
-                                let detectedLang = languageNames[result.language] || "unknown";
+                                let detectedLangCode = result.language;
+                                let detectedLang = detectedLangMarkup(detectedLangCode);
                                 let parent = node.parentNode;
 
                                 if (!parent.innerHTML.includes(translatedText)) {
                                     parent.dataset.originalText = text;
                                     parent.innerHTML = escapeHtml(translatedText) +
-                                        ' <span style="color:#B0B0B0;">(' + escapeHtml(detectedLang) + ')</span>' +
+                                        ' <span style="color:#B0B0B0;">(' + detectedLang + ')</span>' +
                                         ' <span class="view-original" style="color:#87CEFA; text-decoration:underline; cursor:pointer; font-size:0.9em; margin-left:0px;">view original</span>';
                                     parent.dataset.translated = "true";
 
                                     let viewOriginal = parent.querySelector('.view-original');
-                                    viewOriginal.addEventListener('click', () => toggleOriginalText(parent, detectedLang));
+                                    viewOriginal.addEventListener('click', () => toggleOriginalText(parent, detectedLangCode));
                                 }
                             }
                         });
@@ -748,7 +758,7 @@ function initializeAutoTranslateScript() {
                 }
             }
 
-            function toggleOriginalText(element, detectedLang) {
+            function toggleOriginalText(element, detectedLangCode) {
                 let isTranslated = element.dataset.translated === "true";
                 if (isTranslated) {
                     element.innerHTML = escapeHtml(element.dataset.originalText) +
@@ -760,13 +770,14 @@ function initializeAutoTranslateScript() {
                         detectAndTranslate(element.dataset.originalText).then(result => {
                             if (result && result.translatedText) {
                                 let translatedText = result.translatedText;
+                                let detectedLang = detectedLangMarkup(detectedLangCode);
                                 element.innerHTML = escapeHtml(translatedText) +
-                                    ' <span style="color:#B0B0B0;">(' + escapeHtml(detectedLang) + ')</span>' +
+                                    ' <span style="color:#B0B0B0;">(' + detectedLang + ')</span>' +
                                     ' <span class="view-original" style="color:#87CEFA; text-decoration:underline; cursor:pointer; font-size:0.9em; margin-left:0px;">view original</span>';
                                 element.dataset.translated = "true";
 
                                 let viewOriginal = element.querySelector('.view-original');
-                                viewOriginal.addEventListener('click', () => toggleOriginalText(element, detectedLang));
+                                viewOriginal.addEventListener('click', () => toggleOriginalText(element, detectedLangCode));
                             }
                         });
                     });
@@ -800,8 +811,28 @@ function initializeAutoTranslateScript() {
             observer.observe(document.body, config);
             document.querySelectorAll(targetSelector).forEach(el => translateTextNodes(el));
 
+            const untranslatedObserver = new MutationObserver(mutations => {
+                if (localStorage.getItem('scriptEnabled') !== 'true') {
+                    untranslatedObserver.disconnect();
+                    return;
+                }
+
+                mutations.forEach(mutation => {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            let targetNode = node.querySelector(targetSelector) || (node.matches(targetSelector) ? node : null);
+                            if (targetNode && !targetNode.dataset.translated) {
+                                translateTextNodes(targetNode);
+                            }
+                        }
+                    });
+                });
+            });
+            untranslatedObserver.observe(document.body, config);
+
             if (localStorage.getItem('scriptEnabled') !== 'true') {
                 observer.disconnect();
+                untranslatedObserver.disconnect();
                 removeAllTranslations();
             }
         })();
