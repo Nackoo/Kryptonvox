@@ -428,5 +428,3 @@ let focusKeybind = {
 };
 let containerKeybind = {
 	key: 'w',
-	modifier: 'alt',
-};
